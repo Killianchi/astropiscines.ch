@@ -59,7 +59,6 @@ export default function Configurator() {
           quote={state.quote}
           state={state}
           onReset={() => dispatch({ type: 'RESET' })}
-          onFinishReveal={() => dispatch({ type: 'FINISH_REVEAL' })}
         />
       </div>
     );

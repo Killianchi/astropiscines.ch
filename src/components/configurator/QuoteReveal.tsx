@@ -1,50 +1,50 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatPriceRange } from '../../utils/formatPrice';
-import { poolTypes, type PoolType, type ExtraId, extras as extrasData } from '../../data/pricing';
+import { poolTypes, type ExtraId, extras as extrasData } from '../../data/pricing';
 import type { ConfigState } from './types';
 
 interface Props {
   quote: { min: number; max: number };
   state: ConfigState;
   onReset: () => void;
-  onFinishReveal: () => void;
 }
 
-export default function QuoteReveal({ quote, state, onReset, onFinishReveal }: Props) {
+export default function QuoteReveal({ quote, state, onReset }: Props) {
   const [phase, setPhase] = useState<'ripple' | 'draw' | 'counter' | 'done'>('ripple');
   const [countMin, setCountMin] = useState(0);
   const [countMax, setCountMax] = useState(0);
   const rafRef = useRef<number>(0);
-
-  const animateCount = useCallback(() => {
-    const duration = 1500;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      setCountMin(Math.round(eased * quote.min));
-      setCountMax(Math.round(eased * quote.max));
-
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-      } else {
-        setPhase('done');
-        onFinishReveal();
-      }
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
-  }, [quote, onFinishReveal]);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+
     const t1 = setTimeout(() => setPhase('draw'), 1500);
     const t2 = setTimeout(() => {
       setPhase('counter');
-      animateCount();
+
+      // Start count-up animation
+      const duration = 1500;
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        setCountMin(Math.round(eased * quote.min));
+        setCountMax(Math.round(eased * quote.max));
+
+        if (progress < 1) {
+          rafRef.current = requestAnimationFrame(tick);
+        } else {
+          setPhase('done');
+        }
+      };
+
+      rafRef.current = requestAnimationFrame(tick);
     }, 3000);
 
     return () => {
@@ -52,7 +52,8 @@ export default function QuoteReveal({ quote, state, onReset, onFinishReveal }: P
       clearTimeout(t2);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [animateCount]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const summaryItems = [
     { label: 'Région', value: state.region === 'vaud' ? 'Canton de Vaud' : 'Canton de Genève' },
