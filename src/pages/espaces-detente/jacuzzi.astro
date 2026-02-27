@@ -1,0 +1,181 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.jacuzzi;
+
+const models = [
+  {
+    title: 'Jacuzzi 2-3 Places',
+    description: 'Compact et intimiste, parfait pour un couple. S\'intègre facilement sur une terrasse ou dans un petit jardin. Idéal pour une relaxation quotidienne.',
+    specs: ['Dimensions : env. 180 x 150 cm', '15-20 jets hydromassants', 'Pompe 1,5 kW', 'Capacité : 700 litres'],
+    price: 'Dès 8 500 CHF',
+  },
+  {
+    title: 'Jacuzzi 4-5 Places',
+    description: 'Le modèle familial par excellence. Assez spacieux pour des moments de convivialité, suffisamment compact pour s\'intégrer partout.',
+    specs: ['Dimensions : env. 210 x 210 cm', '30-40 jets hydromassants', 'Pompe 2 x 1,5 kW', 'Capacité : 1 200 litres'],
+    price: 'Dès 12 000 CHF',
+  },
+  {
+    title: 'Jacuzzi 6-8 Places',
+    description: 'Grand spa pour les familles et les amateurs de réception. Places allongées et assises pour varier les positions de massage.',
+    specs: ['Dimensions : env. 230 x 230 cm', '50-70 jets hydromassants', 'Pompe 3 x 2 kW', 'Capacité : 1 800 litres'],
+    price: 'Dès 18 000 CHF',
+  },
+  {
+    title: 'Spa de Nage',
+    description: 'Combinaison unique d\'un spa et d\'une piscine de nage à contre-courant. Nagez, faites de l\'aquagym et détendez-vous dans un seul équipement.',
+    specs: ['Longueur : 400-600 cm', 'Nage à contre-courant', 'Zone spa séparée', 'Capacité : 6 000+ litres'],
+    price: 'Dès 28 000 CHF',
+  },
+];
+
+const features = [
+  { title: 'Jets Hydromassants', desc: 'Jets réglables en intensité et direction pour un massage ciblé des zones de tension : dos, nuque, pieds, mollets.', icon: '💆' },
+  { title: 'Filtration Performante', desc: 'Système de filtration et d\'assainissement automatique pour une eau toujours cristalline. Ozone, UV ou brome disponibles.', icon: '🔄' },
+  { title: 'Éclairage LED', desc: 'Éclairage subaquatique LED multicolore avec programmes de chromothérapie. Ambiance personnalisable à chaque baignade.', icon: '💡' },
+  { title: 'Couverture Isotherme', desc: 'Couverture rigide isolante incluse pour maintenir la température, réduire l\'évaporation et sécuriser votre spa.', icon: '🛡️' },
+  { title: 'Système Audio', desc: 'Enceintes Bluetooth étanches intégrées pour écouter votre musique préférée en toute immersion.', icon: '🎵' },
+  { title: 'Cascade & Fontaine', desc: 'Cascades décoratives et fontaines intégrées pour un effet visuel apaisant et un bruit d\'eau relaxant.', icon: '🌊' },
+];
+
+const faqItems = [
+  { question: 'Faut-il un permis pour installer un jacuzzi ?', answer: 'En règle générale, un jacuzzi posé en surface ne nécessite pas de permis de construire en Suisse. Cependant, si vous souhaitez l\'encastrer ou construire un abri, une autorisation peut être requise selon votre commune. Nous vous accompagnons dans les démarches administratives.' },
+  { question: 'Quelle est la consommation électrique d\'un jacuzzi ?', answer: 'La consommation moyenne est de 3 à 5 CHF par jour pour maintenir l\'eau à température (37°C). Une bonne couverture isotherme réduit la consommation de 70%. En mode éco, les coûts descendent à 1-2 CHF/jour.' },
+  { question: 'Quel entretien nécessite un jacuzzi ?', answer: 'Il faut contrôler le pH et le désinfectant 1 à 2 fois par semaine, nettoyer le filtre toutes les 2 semaines et changer l\'eau tous les 3 à 4 mois. Nous proposons des contrats d\'entretien pour simplifier ces tâches.' },
+  { question: 'Peut-on utiliser un jacuzzi en hiver ?', answer: 'Absolument, c\'est même l\'une des meilleures périodes pour en profiter. L\'eau est maintenue à 37°C toute l\'année. Le contraste entre l\'air frais et l\'eau chaude procure une sensation unique et très bénéfique pour la santé.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Jacuzzis & Spas"
+  heroSubtitle="Offrez-vous le luxe d'un jacuzzi chez vous. Large gamme de modèles, installation professionnelle et service après-vente à Genève et Vaud."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Installation de Jacuzzis et Spas"
+    description={seo.description}
+    url="/espaces-detente/jacuzzi/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Modèles -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Notre Gamme de Jacuzzis"
+        subtitle="Des modèles pour tous les espaces et tous les budgets, sélectionnés pour leur qualité et leur fiabilité."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {models.map((model) => (
+          <Card class="p-8">
+            <h3 class="text-2xl font-heading font-bold text-pool-deep mb-3">{model.title}</h3>
+            <p class="text-gray-600 mb-4">{model.description}</p>
+            <ul class="space-y-2 mb-6">
+              {model.specs.map((spec) => (
+                <li class="flex items-center text-sm text-gray-700">
+                  <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {spec}
+                </li>
+              ))}
+            </ul>
+            <p class="font-heading font-bold text-gold text-lg">{model.price}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Caractéristiques -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Équipements et Options"
+        subtitle="Personnalisez votre jacuzzi avec des options de confort et de bien-être."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <Card class="p-6">
+            <div class="text-3xl mb-3">{feature.icon}</div>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{feature.title}</h3>
+            <p class="text-gray-600 text-sm">{feature.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Installation -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Installation Clé en Main"
+        subtitle="De la livraison à la mise en eau, nous gérons l'intégralité de l'installation."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {[
+          { step: '01', title: 'Conseil', desc: 'Visite à domicile, étude de l\'emplacement, choix du modèle et des options selon vos besoins et votre budget.' },
+          { step: '02', title: 'Préparation', desc: 'Préparation de la dalle, raccordements électriques et hydrauliques par nos techniciens certifiés.' },
+          { step: '03', title: 'Livraison', desc: 'Livraison par grue si nécessaire, positionnement précis du spa et raccordement aux réseaux.' },
+          { step: '04', title: 'Mise en Eau', desc: 'Remplissage, traitement initial de l\'eau, réglages et formation complète à l\'utilisation.' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pool-deep text-white rounded-full flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4">
+              {item.step}
+            </div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur les jacuzzis et spas."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Prêt à plonger dans le bien-être ?
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Visitez nos showrooms pour essayer nos jacuzzis ou demandez un devis personnalisé.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Visiter le showroom</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

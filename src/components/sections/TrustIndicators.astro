@@ -1,0 +1,23 @@
+---
+import Container from '../ui/Container.astro';
+
+const indicators = [
+  { icon: '🏗️', value: '50+', label: 'ans d\'expérience' },
+  { icon: '🏊', value: '500+', label: 'piscines réalisées' },
+  { icon: '📍', value: '2', label: 'cantons: Genève & Vaud' },
+  { icon: '💰', value: '0 CHF', label: 'Devis gratuit' },
+];
+---
+<section class="relative -mt-12 z-20">
+  <Container>
+    <div class="bg-white rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+      {indicators.map((item) => (
+        <div class="text-center">
+          <div class="text-3xl mb-2">{item.icon}</div>
+          <div class="text-2xl md:text-3xl font-heading font-bold text-pool-deep">{item.value}</div>
+          <div class="text-sm text-gray-600 mt-1">{item.label}</div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,188 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ServiceSchema from '../components/seo/ServiceSchema.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.pergola;
+
+const advantages = [
+  { icon: '☀️', title: 'Protection Solaire', desc: 'Lames orientables de 0 a 135 degres pour doser la lumière et l\'ombre selon vos envies. Protégez-vous du soleil sans renoncer à la clarté.' },
+  { icon: '🌧️', title: 'Protection Pluie', desc: 'En position fermée, les lames assurent une parfaite étanchéité. Profitez de votre terrasse même par temps de pluie, avec évacuation d\'eau intégrée.' },
+  { icon: '🌬️', title: 'Ventilation Naturelle', desc: 'Les lames orientables permettent une ventilation naturelle optimale. L\'air circule librement, évitant l\'effet de serre des toitures traditionnelles.' },
+  { icon: '🏠', title: 'Valorisation Immobilière', desc: 'Une pergola bioclimatique augmente la surface habitable de votre bien et valorise votre propriété. Un investissement durable et élégant.' },
+];
+
+const options = [
+  { title: 'Stores Verticaux', desc: 'Stores ZIP latéraux pour une protection complète contre le vent, le soleil rasant et les regards. Toile micro-perforée ou occultante.' },
+  { title: 'Éclairage LED', desc: 'Éclairage intégré dans les lames, les poteaux ou en bandeau. Variateur d\'intensité et choix de température de couleur.' },
+  { title: 'Chauffage', desc: 'Radiants infrarouges encastrés dans la structure pour profiter de votre pergola même les soirs d\'automne et de printemps.' },
+  { title: 'Brumisation', desc: 'Système de brumisation intégré pour rafraîchir l\'air sous la pergola de 5 à 10 degres pendant les journées chaudes.' },
+  { title: 'Motorisation', desc: 'Ouverture et fermeture motorisée des lames, pilotable par télécommande, interrupteur mural ou application smartphone.' },
+  { title: 'Capteurs Météo', desc: 'Station météo intégrée avec capteurs de pluie, vent et soleil. Fermeture automatique des lames en cas d\'intempéries.' },
+];
+
+const materials = [
+  { title: 'Aluminium Laqué', desc: 'Structure en aluminium thermolaqué, disponible dans plus de 200 coloris RAL. Résistant à la corrosion, léger et ne nécessitant aucun entretien.' },
+  { title: 'Lames Orientables', desc: 'Lames en aluminium extrudé de 200 ou 250 mm, remplies de mousse isolante. Rotation motorisée de 0 a 135 degres pour un contrôle total de la lumière.' },
+  { title: 'Gouttières Intégrées', desc: 'Système d\'évacuation d\'eau de pluie intégré dans les poteaux. Invisible de l\'extérieur, raccordable au réseau d\'eaux pluviales.' },
+];
+
+const faqItems = [
+  { question: 'Faut-il un permis de construire pour une pergola ?', answer: 'En Suisse, une pergola bioclimatique nécessite généralement une autorisation de construire si elle dépasse 10 m2 ou si elle est attenante à la maison. Les règles varient selon les cantons et les communes. Nous nous chargeons de constituer le dossier d\'autorisation pour vous.' },
+  { question: 'Quelles dimensions sont possibles ?', answer: 'Nos pergolas sont entièrement sur mesure. Les dimensions courantes vont de 3x3 m à 7x5 m en un seul module. Pour les plus grands espaces, nous assemblons plusieurs modules. La portée libre (sans poteau intermédiaire) peut atteindre 7 mètres.' },
+  { question: 'La pergola résiste-t-elle à la neige et au vent ?', answer: 'Nos pergolas sont calculées selon les normes suisses SIA pour résister aux charges de neige et de vent de votre région. En standard, elles supportent 150 kg/m2 de neige et des vents jusqu\'à 120 km/h. Les capteurs météo ferment automatiquement les lames en cas de neige.' },
+  { question: 'Quel est le délai de réalisation ?', answer: 'Comptez 6 à 8 semaines entre la commande et l\'installation. La fabrication est réalisée sur mesure en usine (4-6 semaines), puis l\'installation sur site prend 2 à 3 jours selon la complexité du projet.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Pergolas Bioclimatiques"
+  heroSubtitle="Des pergolas à lames orientables sur mesure pour profiter de votre terrasse et de votre piscine en toute saison. Design, confort et technologie."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Pergolas Bioclimatiques"
+    description={seo.description}
+    url="/pergola/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Avantages -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Les Avantages d'une Pergola Bioclimatique"
+        subtitle="Une solution architecturale intelligente qui s'adapte à la météo et à vos envies."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {advantages.map((item) => (
+          <div class="text-center">
+            <div class="text-4xl mb-4">{item.icon}</div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Matériaux et structure -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Structure et Matériaux"
+        subtitle="Une construction robuste et élégante, conçue pour durer des décennies."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {materials.map((material) => (
+          <Card class="p-8">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{material.title}</h3>
+            <p class="text-gray-600">{material.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Options -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Options et Personnalisation"
+        subtitle="Composez la pergola qui correspond parfaitement à votre mode de vie."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {options.map((option) => (
+          <Card class="p-6">
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{option.title}</h3>
+            <p class="text-gray-600 text-sm">{option.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pergola + Piscine -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeading
+            title="Pergola & Piscine"
+            subtitle="Le duo parfait pour votre espace extérieur."
+            align="left"
+          />
+          <p class="text-gray-600 mb-6">
+            Associer une pergola bioclimatique à votre piscine, c'est créer un véritable espace de vie extérieur. Protégez vos bains de soleil, créez un coin repas ombragé au bord de l'eau, ou aménagez un salon d'extérieur confortable.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Nos architectes conçoivent des projets intégrés où pergola et piscine forment un ensemble harmonieux. Les matériaux, les couleurs et les lignes sont pensés pour se compléter.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {[
+              'Espace repas protégé au bord de la piscine',
+              'Zone de détente ombragée pour les bains de soleil',
+              'Douche extérieure intégrée sous la pergola',
+              'Éclairage coordonné pergola et piscine',
+            ].map((item) => (
+              <li class="flex items-center text-gray-700">
+                <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <Button href="/contact/" variant="secondary">Discuter de votre projet</Button>
+        </div>
+        <div class="bg-gradient-to-br from-pool-deep/10 to-pool-medium/10 rounded-2xl aspect-video flex items-center justify-center">
+          <p class="text-pool-deep/40 font-heading text-lg">Photo pergola et piscine</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur nos pergolas bioclimatiques."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Votre pergola sur mesure
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Demandez une étude gratuite et découvrez comment une pergola bioclimatique peut transformer votre extérieur.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Étude gratuite</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

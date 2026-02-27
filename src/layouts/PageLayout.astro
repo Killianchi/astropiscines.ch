@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heroTitle: string;
+  heroSubtitle?: string;
+  canonical?: string;
+  ogImage?: string;
+  lang?: string;
+  alternateEn?: string;
+  alternateFr?: string;
+}
+
+const {
+  title,
+  description,
+  heroTitle,
+  heroSubtitle,
+  canonical,
+  ogImage,
+  lang,
+  alternateEn,
+  alternateFr,
+} = Astro.props;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={ogImage}
+  lang={lang}
+  alternateEn={alternateEn}
+  alternateFr={alternateFr}
+>
+  <slot name="schema" slot="schema" />
+
+  <!-- Page Hero -->
+  <section class="bg-gradient-to-br from-pool-deep to-pool-medium py-20 pt-32">
+    <Container>
+      <Breadcrumbs />
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mt-4 mb-4">
+        {heroTitle}
+      </h1>
+      {heroSubtitle && (
+        <p class="text-xl text-pool-surface max-w-3xl">{heroSubtitle}</p>
+      )}
+    </Container>
+  </section>
+
+  <slot />
+</BaseLayout>

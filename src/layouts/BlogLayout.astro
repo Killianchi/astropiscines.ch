@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  lang?: string;
+}
+
+const { title, description, date, category, lang } = Astro.props;
+---
+<BaseLayout title={`${title} | Blog Astro Piscines`} description={description} lang={lang}>
+  <slot name="schema" slot="schema" />
+
+  <section class="bg-gradient-to-br from-pool-deep to-pool-medium py-20 pt-32">
+    <Container>
+      <Breadcrumbs />
+      <div class="mt-4">
+        <span class="inline-block px-3 py-1 bg-gold/20 text-gold text-sm font-medium rounded-full mb-4">
+          {category}
+        </span>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+          {title}
+        </h1>
+        <p class="text-pool-surface/80 text-sm">{date}</p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16">
+    <Container>
+      <article class="max-w-3xl mx-auto prose prose-lg">
+        <slot />
+      </article>
+    </Container>
+  </section>
+</BaseLayout>

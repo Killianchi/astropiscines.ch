@@ -1,0 +1,62 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Card from '../ui/Card.astro';
+
+const services = [
+  {
+    title: 'Construction',
+    description: 'Piscines béton, coque ou inox sur mesure pour votre projet.',
+    href: '/construction/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+  },
+  {
+    title: 'Rénovation',
+    description: 'Liner, détection de fuites, remise en état complète.',
+    href: '/renovation/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+  },
+  {
+    title: 'Entretien',
+    description: 'Forfaits de maintenance adaptés à votre piscine.',
+    href: '/entretien/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  },
+  {
+    title: 'Espaces Détente',
+    description: 'Saunas, hammams et jacuzzis pour votre bien-être.',
+    href: '/espaces-detente/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>`,
+  },
+  {
+    title: 'Équipements',
+    description: 'Filtration, chauffage, automatisation, couvertures, LED.',
+    href: '/equipements/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+  },
+  {
+    title: 'Pergola',
+    description: 'Pergolas bioclimatiques pour votre espace piscine.',
+    href: '/pergola/',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+  },
+];
+---
+<section class="py-20">
+  <Container>
+    <SectionHeading title="Nos services" subtitle="Des solutions complètes pour votre projet aquatique" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service) => (
+        <Card href={service.href} class="p-6 group block">
+          <div class="w-14 h-14 bg-pool-surface rounded-xl flex items-center justify-center text-pool-deep mb-4 group-hover:bg-pool-deep group-hover:text-white transition-colors">
+            <Fragment set:html={service.icon} />
+          </div>
+          <h3 class="text-xl font-heading font-semibold text-charcoal mb-2 group-hover:text-pool-deep transition-colors">
+            {service.title}
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</section>

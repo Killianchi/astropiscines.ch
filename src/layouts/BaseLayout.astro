@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import Header from '../components/navigation/Header.astro';
+import Footer from '../components/navigation/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  lang?: string;
+  alternateEn?: string;
+  alternateFr?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.jpg',
+  noindex = false,
+  lang = 'fr',
+  alternateEn,
+  alternateFr,
+} = Astro.props;
+
+const siteUrl = 'https://astro-piscines.ch';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Astro Piscines" />
+  <meta property="og:locale" content={lang === 'fr' ? 'fr_CH' : 'en_GB'} />
+
+  <!-- hreflang -->
+  {alternateFr && <link rel="alternate" hreflang="fr" href={`${siteUrl}${alternateFr}`} />}
+  {alternateEn && <link rel="alternate" hreflang="en" href={`${siteUrl}${alternateEn}`} />}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Schema slot -->
+  <slot name="schema" />
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+  <Header />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>

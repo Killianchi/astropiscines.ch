@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.astro-piscines.ch)",
+      "mcp__claude_ai_Sequential_Thinking__sequentialthinking",
+      "Bash(npm create:*)",
+      "Bash(cp:*)",
+      "Bash(npm run:*)",
+      "Bash(ls:*)",
+      "Bash(gh auth:*)",
+      "Bash(git:*)"
+    ]
+  }
+}

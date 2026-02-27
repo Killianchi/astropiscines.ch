@@ -1,0 +1,266 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.construction;
+
+const faqItems = [
+  {
+    question: 'Quel type de piscine choisir : béton, coque ou inox ?',
+    answer: 'Le choix dépend de votre budget, du terrain et de vos préférences esthétiques. Le béton offre une personnalisation totale, la coque polyester une installation rapide et économique, et l\'inox une durabilité exceptionnelle avec un design haut de gamme. Nos experts vous accompagnent pour déterminer la solution idéale lors d\'un rendez-vous gratuit.',
+  },
+  {
+    question: 'Combien coûte la construction d\'une piscine en Suisse ?',
+    answer: 'Le prix varie selon le type de construction, les dimensions et les équipements choisis. Comptez à partir de CHF 35\'000 pour une piscine coque, CHF 50\'000 pour une piscine en béton sur mesure, et CHF 80\'000 pour une piscine inox. Utilisez notre configurateur en ligne pour obtenir une estimation personnalisée.',
+  },
+  {
+    question: 'Combien de temps dure la construction d\'une piscine ?',
+    answer: 'Les délais varient selon la technique : 1 à 2 semaines pour une piscine coque (hors terrassement), 8 à 12 semaines pour une piscine en béton, et 6 à 10 semaines pour une piscine inox. Le terrassement et les finitions extérieures s\'ajoutent à ces délais.',
+  },
+  {
+    question: 'Faut-il un permis de construire pour une piscine à Genève ou Vaud ?',
+    answer: 'Oui, dans les cantons de Genève et Vaud, un permis de construire est généralement requis pour l\'installation d\'une piscine enterrée. Astro Piscines prend en charge l\'ensemble des démarches administratives pour vous simplifier le processus.',
+  },
+  {
+    question: 'Quelles garanties offrez-vous sur la construction ?',
+    answer: 'Nous offrons une garantie décennale sur la structure de toutes nos piscines, conformément aux normes suisses. Les équipements techniques bénéficient d\'une garantie de 2 à 5 ans selon les fabricants. Notre service après-vente reste à votre disposition bien au-delà de ces périodes.',
+  },
+];
+
+const poolTypes = [
+  {
+    title: 'Piscine Béton',
+    href: '/construction/piscine-beton/',
+    description: 'La solution sur mesure par excellence. Formes libres, dimensions personnalisées et finitions premium pour une piscine unique.',
+    icon: '🏗️',
+    highlights: ['100% sur mesure', 'Formes libres', 'Durabilité maximale'],
+  },
+  {
+    title: 'Piscine Coque',
+    href: '/construction/piscine-coque/',
+    description: 'Installation rapide et budget maîtrisé. Un large choix de formes préfabriquées avec une qualité éprouvée.',
+    icon: '⚡',
+    highlights: ['Installation rapide', 'Budget maîtrisé', 'Large choix de formes'],
+  },
+  {
+    title: 'Piscine Inox',
+    href: '/construction/piscine-inox/',
+    description: 'Le choix premium pour une piscine d\'exception. Acier inoxydable de qualité chirurgicale, design contemporain.',
+    icon: '✨',
+    highlights: ['Haut de gamme', 'Durée de vie illimitée', 'Design unique'],
+  },
+];
+---
+
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Construction de Piscines"
+  heroSubtitle="Plus de 50 ans d'expertise dans la construction de piscines sur mesure. Béton, coque polyester ou inox : découvrez la solution idéale pour votre projet."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Construction de Piscines"
+    description={seo.description}
+    url="/construction/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Introduction -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Votre piscine, notre expertise"
+        subtitle="Depuis 1974, Astro Piscines conçoit et construit des piscines d'exception dans les cantons de Genève et Vaud. Chaque projet est unique, et nous vous accompagnons de la conception à la mise en eau."
+      />
+      <div class="max-w-4xl mx-auto text-gray-700 space-y-4 text-lg leading-relaxed">
+        <p>
+          Que vous rêviez d'un bassin contemporain à débordement, d'une piscine familiale conviviale ou d'un couloir de nage sportif, nos équipes maîtrisent les trois grandes techniques de construction : le <strong>béton armé</strong> pour une liberté totale de formes, la <strong>coque polyester</strong> pour une mise en oeuvre rapide, et l'<strong>acier inoxydable</strong> pour un résultat haut de gamme inégalé.
+        </p>
+        <p>
+          Chaque technique possède ses avantages. Découvrez ci-dessous nos trois méthodes de construction et trouvez celle qui correspond le mieux à votre projet, votre terrain et votre budget.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pool Types Cards -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Nos méthodes de construction"
+        subtitle="Trois techniques éprouvées pour réaliser la piscine de vos rêves"
+      />
+      <div class="grid md:grid-cols-3 gap-8">
+        {poolTypes.map((pool) => (
+          <Card href={pool.href} class="p-8 flex flex-col">
+            <div class="text-4xl mb-4">{pool.icon}</div>
+            <h3 class="text-2xl font-heading font-bold text-pool-deep mb-3">{pool.title}</h3>
+            <p class="text-gray-600 mb-6 flex-grow">{pool.description}</p>
+            <ul class="space-y-2 mb-6">
+              {pool.highlights.map((h) => (
+                <li class="flex items-center text-sm text-gray-700">
+                  <span class="w-2 h-2 bg-gold rounded-full mr-3 flex-shrink-0"></span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+            <span class="text-pool-deep font-heading font-semibold hover:text-pool-medium transition-colors">
+              En savoir plus &rarr;
+            </span>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Comparatif des techniques"
+        subtitle="Retrouvez en un coup d'oeil les caractéristiques de chaque méthode de construction"
+      />
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
+          <thead>
+            <tr class="bg-pool-deep text-white">
+              <th class="p-4 text-left font-heading">Critère</th>
+              <th class="p-4 text-center font-heading">Béton</th>
+              <th class="p-4 text-center font-heading">Coque</th>
+              <th class="p-4 text-center font-heading">Inox</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Personnalisation</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Totale</span></td>
+              <td class="p-4 text-center"><span class="text-yellow-600 font-bold">Catalogue</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Totale</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Délai de construction</td>
+              <td class="p-4 text-center">8 - 12 semaines</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">1 - 2 semaines</span></td>
+              <td class="p-4 text-center">6 - 10 semaines</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Budget (à partir de)</td>
+              <td class="p-4 text-center">CHF 50'000</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">CHF 35'000</span></td>
+              <td class="p-4 text-center">CHF 80'000</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Durée de vie</td>
+              <td class="p-4 text-center">30 - 50 ans</td>
+              <td class="p-4 text-center">20 - 30 ans</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">50+ ans</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Entretien</td>
+              <td class="p-4 text-center">Modéré</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Faible</span></td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Très faible</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Revêtement</td>
+              <td class="p-4 text-center">Carrelage, liner, PVC</td>
+              <td class="p-4 text-center">Gel coat intégré</td>
+              <td class="p-4 text-center">Inox brossé / poli</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Adaptation au terrain</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Excellente</span></td>
+              <td class="p-4 text-center">Bonne</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">Excellente</span></td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 font-semibold text-charcoal">Garantie structure</td>
+              <td class="p-4 text-center">10 ans</td>
+              <td class="p-4 text-center">10 ans</td>
+              <td class="p-4 text-center"><span class="text-green-600 font-bold">10 ans</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Process Overview -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Notre processus en 5 étapes"
+        subtitle="Un accompagnement complet, de la première idée à votre premier plongeon"
+      />
+      <div class="grid md:grid-cols-5 gap-6">
+        {[
+          { step: '01', title: 'Consultation', desc: 'Rendez-vous gratuit pour comprendre vos envies et étudier votre terrain.' },
+          { step: '02', title: 'Conception', desc: 'Plans détaillés, visualisation 3D et choix des équipements.' },
+          { step: '03', title: 'Autorisation', desc: 'Nous gérons les démarches administratives et le permis de construire.' },
+          { step: '04', title: 'Construction', desc: 'Réalisation par nos équipes qualifiées avec suivi de chantier régulier.' },
+          { step: '05', title: 'Mise en eau', desc: 'Tests, mise en service des équipements et formation à l\'utilisation.' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pool-deep text-white rounded-full flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4">
+              {item.step}
+            </div>
+            <h3 class="font-heading font-bold text-charcoal mb-2">{item.title}</h3>
+            <p class="text-sm text-gray-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Questions fréquentes"
+        subtitle="Tout ce que vous devez savoir sur la construction de piscines"
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((faq) => (
+          <details class="group bg-gray-50 rounded-xl p-6 cursor-pointer">
+            <summary class="flex justify-between items-center font-heading font-semibold text-pool-deep text-lg list-none">
+              {faq.question}
+              <span class="ml-4 text-gold group-open:rotate-45 transition-transform text-2xl">+</span>
+            </summary>
+            <p class="mt-4 text-gray-700 leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Prêt à concrétiser votre projet ?
+        </h2>
+        <p class="text-xl text-pool-surface mb-8 max-w-2xl mx-auto">
+          Configurez votre piscine en ligne ou prenez rendez-vous avec nos experts pour un conseil personnalisé gratuit.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/configurateur/" size="lg">
+            Configurer ma piscine
+          </Button>
+          <Button href="/contact/" variant="ghost" size="lg" class="!border-white !text-white hover:!bg-white hover:!text-pool-deep">
+            Nous contacter
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

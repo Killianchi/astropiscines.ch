@@ -1,0 +1,233 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import ContactForm from '../components/shared/ContactForm.tsx';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.contact;
+
+const locations = [
+  {
+    name: 'Showroom Nyon',
+    address: 'Route de Saint-Cergue 293',
+    city: '1260 Nyon',
+    phone: '022 361 84 84',
+    email: 'nyon@astro-piscines.ch',
+    hours: [
+      'Lundi - Vendredi : 8h00 - 12h00 / 13h30 - 17h30',
+      'Samedi : 9h00 - 12h00 (sur rendez-vous)',
+      'Dimanche : Fermé',
+    ],
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2754.5!2d6.2!3d46.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNyon!5e0!3m2!1sfr!2sch!4v1',
+  },
+  {
+    name: 'Showroom Chêne-Bourg',
+    address: 'Route de Chêne 50',
+    city: '1225 Chêne-Bourg',
+    phone: '022 348 28 28',
+    email: 'geneve@astro-piscines.ch',
+    hours: [
+      'Lundi - Vendredi : 8h00 - 12h00 / 13h30 - 17h30',
+      'Samedi : Sur rendez-vous uniquement',
+      'Dimanche : Fermé',
+    ],
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d6.2!3d46.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sChene-Bourg!5e0!3m2!1sfr!2sch!4v1',
+  },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Contactez-nous"
+  heroSubtitle="Une question, un projet, une demande de devis ? Notre équipe est à votre écoute pour vous accompagner dans votre projet piscine ou bien-être."
+>
+  <BreadcrumbSchema slot="schema" />
+
+  <!-- Formulaire + Infos -->
+  <section class="py-20">
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <!-- Formulaire -->
+        <div class="lg:col-span-3">
+          <h2 class="text-3xl font-heading font-bold text-pool-deep mb-2">Envoyez-nous un message</h2>
+          <div class="w-16 h-1 bg-gold rounded-full mb-6"></div>
+          <p class="text-gray-600 mb-8">
+            Remplissez le formulaire ci-dessous et nous vous recontacterons sous 24 heures ouvrées. Vous pouvez aussi nous appeler directement ou passer dans l'un de nos showrooms.
+          </p>
+          <ContactForm client:load />
+        </div>
+
+        <!-- Informations de contact -->
+        <div class="lg:col-span-2 space-y-6">
+          <h2 class="text-3xl font-heading font-bold text-pool-deep mb-2">Informations</h2>
+          <div class="w-16 h-1 bg-gold rounded-full mb-6"></div>
+
+          <!-- Téléphone principal -->
+          <Card class="p-6" hover={false}>
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-pool-deep/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                <svg class="w-6 h-6 text-pool-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-pool-deep mb-1">Numéro unique</h3>
+                <a href="tel:0842520520" class="text-lg text-pool-medium hover:text-pool-deep transition-colors font-semibold">
+                  0842 520 520
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Tarif local depuis toute la Suisse</p>
+              </div>
+            </div>
+          </Card>
+
+          <!-- Email -->
+          <Card class="p-6" hover={false}>
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-pool-deep/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                <svg class="w-6 h-6 text-pool-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-pool-deep mb-1">E-mail</h3>
+                <a href="mailto:info@astro-piscines.ch" class="text-pool-medium hover:text-pool-deep transition-colors">
+                  info@astro-piscines.ch
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Réponse sous 24h ouvrées</p>
+              </div>
+            </div>
+          </Card>
+
+          <!-- Urgence -->
+          <Card class="p-6" hover={false}>
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-bold text-pool-deep mb-1">Urgence technique</h3>
+                <p class="text-sm text-gray-600">
+                  Clients sous contrat Premium : intervention prioritaire sous 48h, y compris le week-end en saison.
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <!-- Devis -->
+          <div class="bg-pool-surface rounded-2xl p-6">
+            <h3 class="font-heading font-bold text-pool-deep mb-2">Devis gratuit</h3>
+            <p class="text-gray-600 text-sm mb-4">
+              Utilisez notre configurateur en ligne pour obtenir une estimation instantanée de votre projet.
+            </p>
+            <Button href="/configurateur/" variant="secondary" size="sm" class="w-full justify-center">
+              Accéder au configurateur
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Nos showrooms -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Nos Showrooms"
+        subtitle="Deux points de vente pour vous accueillir dans les cantons de Vaud et de Genève."
+      />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {locations.map((location) => (
+          <Card class="overflow-hidden">
+            <!-- Map placeholder -->
+            <div class="aspect-video bg-gray-200 relative">
+              <iframe
+                src={location.mapUrl}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title={`Carte ${location.name}`}
+                class="absolute inset-0"
+              ></iframe>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-heading font-bold text-pool-deep mb-4">{location.name}</h3>
+
+              <div class="space-y-4">
+                <!-- Adresse -->
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-pool-medium mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <div>
+                    <p class="text-gray-700">{location.address}</p>
+                    <p class="text-gray-700">{location.city}</p>
+                  </div>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 text-pool-medium mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <a href={`tel:${location.phone.replace(/\s/g, '')}`} class="text-pool-medium hover:text-pool-deep transition-colors">
+                    {location.phone}
+                  </a>
+                </div>
+
+                <!-- Email -->
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 text-pool-medium mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <a href={`mailto:${location.email}`} class="text-pool-medium hover:text-pool-deep transition-colors">
+                    {location.email}
+                  </a>
+                </div>
+
+                <!-- Horaires -->
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-pool-medium mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    {location.hours.map((hour) => (
+                      <p class="text-gray-700 text-sm">{hour}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Démarrez votre projet dès aujourd'hui
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Que vous souhaitiez construire, rénover ou entretenir votre piscine, nous avons la solution adaptée à vos besoins.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/configurateur/" variant="primary" size="lg">Configurateur en ligne</Button>
+          <Button href="/a-propos/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Découvrir Astro Piscines</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

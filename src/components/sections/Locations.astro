@@ -1,0 +1,57 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Card from '../ui/Card.astro';
+
+const locations = [
+  {
+    name: 'Nyon',
+    address: 'Route de Saint-Cergue 293, 1260 Nyon',
+    region: 'Canton de Vaud',
+    phone: '0842 520 520',
+    mapUrl: 'https://www.google.com/maps?q=Route+de+Saint-Cergue+293+1260+Nyon',
+  },
+  {
+    name: 'Chêne-Bourg',
+    address: 'Chemin de la Mousse 131, 1225 Chêne-Bourg',
+    region: 'Canton de Genève',
+    phone: '0842 520 520',
+    mapUrl: 'https://www.google.com/maps?q=Chemin+de+la+Mousse+131+1225+Chêne-Bourg',
+  },
+];
+---
+<section class="py-20 bg-pool-surface/50">
+  <Container>
+    <SectionHeading title="Nos showrooms" subtitle="Visitez nos espaces d'exposition à Nyon et Chêne-Bourg" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {locations.map((loc) => (
+        <Card class="p-8">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-pool-deep rounded-xl flex items-center justify-center text-white shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-semibold text-charcoal mb-1">{loc.name}</h3>
+              <p class="text-sm text-pool-medium font-medium mb-2">{loc.region}</p>
+              <p class="text-sm text-gray-600 mb-1">{loc.address}</p>
+              <a href={`tel:${loc.phone.replace(/\s/g, '')}`} class="text-sm text-pool-medium hover:text-pool-deep transition-colors">
+                {loc.phone}
+              </a>
+              <a
+                href={loc.mapUrl}
+                target="_blank"
+                rel="noopener"
+                class="block mt-3 text-sm font-medium text-gold hover:text-gold-light transition-colors"
+              >
+                Voir sur Google Maps &rarr;
+              </a>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,175 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.sauna;
+
+const types = [
+  {
+    title: 'Sauna Finlandais',
+    description: 'Le sauna traditionnel avec chaleur sèche entre 80 et 100 degres. L\'expérience authentique pour une relaxation profonde et une detoxification naturelle.',
+    features: ['Température 80-100°C', 'Humidité 10-20%', 'Bois massif nordique', 'Poêle haute performance'],
+  },
+  {
+    title: 'Sauna Infrarouge',
+    description: 'Chaleur douce par rayonnement infrarouge, idéale pour les personnes sensibles aux temperatures élevées. Bienfaits therapeutiques à basse température.',
+    features: ['Température 40-60°C', 'Panneaux carbone ou céramique', 'Montée en température rapide', 'Faible consommation'],
+  },
+  {
+    title: 'Sauna Extérieur',
+    description: 'Cabine indépendante pour votre jardin, avec vue sur la nature. Design scandinave et isolation renforcée pour une utilisation toute l\'année.',
+    features: ['Structure autonome', 'Isolation haute performance', 'Poêle à bois ou électrique', 'Terrasse intégrée possible'],
+  },
+  {
+    title: 'Sauna Sur Mesure',
+    description: 'Conception entièrement personnalisée selon vos dimensions, matériaux et options. Notre bureau d\'études crée le sauna qui s\'intègre parfaitement à votre espace.',
+    features: ['Dimensions libres', 'Choix du bois', 'Éclairage personnalisé', 'Vitrage panoramique'],
+  },
+];
+
+const benefits = [
+  'Améliore la circulation sanguine',
+  'Soulage les douleurs musculaires et articulaires',
+  'Renforce le système immunitaire',
+  'Élimine les toxines par la transpiration',
+  'Réduit le stress et l\'anxiété',
+  'Améliore la qualité du sommeil',
+  'Purifie la peau en profondeur',
+  'Favorise la récupération sportive',
+];
+
+const faqItems = [
+  { question: 'Quelle taille minimum pour installer un sauna ?', answer: 'Un sauna pour 2 personnes nécessite environ 4 m2. Pour un sauna familial de 4 personnes, comptez 6 à 8 m2. Nous proposons des solutions sur mesure qui s\'adaptent à toutes les configurations, y compris les espaces atypiques.' },
+  { question: 'Quelle alimentation électrique faut-il ?', answer: 'Un sauna finlandais nécessite généralement une alimentation triphasée (380V) pour le poêle. Un sauna infrarouge fonctionne sur une prise standard 230V. Nous réalisons l\'étude électrique lors de la visite technique.' },
+  { question: 'Quel entretien pour un sauna ?', answer: 'L\'entretien est minimal : aérer après chaque utilisation, nettoyer les banquettes avec un produit adapté une fois par mois, et vérifier le poêle annuellement. Nous proposons des contrats d\'entretien pour votre tranquillité.' },
+  { question: 'Combien coûte l\'installation d\'un sauna ?', answer: 'Les prix varient de 8 000 CHF pour un sauna infrarouge compact à plus de 30 000 CHF pour un sauna extérieur sur mesure. Le tarif inclut la fourniture, l\'installation et la mise en service. Devis gratuit sur demande.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Saunas"
+  heroSubtitle="Du sauna finlandais traditionnel au sauna infrarouge moderne, nous concevons et installons le sauna qui correspond à vos envies et à votre espace."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Installation de Saunas"
+    description={seo.description}
+    url="/espaces-detente/sauna/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Types de saunas -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Nos Saunas"
+        subtitle="Découvrez notre gamme complète de saunas pour trouver celui qui vous convient."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {types.map((type) => (
+          <Card class="p-8">
+            <h3 class="text-2xl font-heading font-bold text-pool-deep mb-3">{type.title}</h3>
+            <p class="text-gray-600 mb-6">{type.description}</p>
+            <ul class="space-y-2">
+              {type.features.map((feature) => (
+                <li class="flex items-center text-sm text-gray-700">
+                  <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Bienfaits -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Les Bienfaits du Sauna"
+        subtitle="Le sauna est reconnu depuis des siècles pour ses nombreux bienfaits sur la santé."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {benefits.map((benefit) => (
+          <div class="flex items-start bg-white rounded-xl p-4 shadow-sm">
+            <svg class="w-5 h-5 text-gold mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-gray-700 text-sm">{benefit}</span>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Matériaux -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Des Matériaux d'Exception"
+        subtitle="Nous sélectionnons les meilleurs bois pour garantir durabilité, esthétique et confort."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Cèdre Rouge', desc: 'Bois aromatique naturellement résistant à l\'humidité. Son parfum agréable et sa couleur chaleureuse en font un choix premium pour les saunas haut de gamme.' },
+          { title: 'Épicéa Nordique', desc: 'Bois clair et léger, idéal pour les saunas classiques. Excellent rapport qualité-prix avec une bonne résistance à la chaleur et une odeur agréable de forêt.' },
+          { title: 'Tremble (Aspen)', desc: 'Bois sans résine qui ne chauffe pas en surface. Parfait pour les banquettes et les zones de contact. Hypoallergénique et très confortable.' },
+        ].map((wood) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{wood.title}</h3>
+            <p class="text-gray-600 text-sm">{wood.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur l'installation d'un sauna."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Votre sauna sur mesure vous attend
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Contactez-nous pour une étude personnalisée et un devis gratuit pour votre projet de sauna.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Demander un devis</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

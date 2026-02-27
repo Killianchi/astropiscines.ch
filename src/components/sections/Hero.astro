@@ -1,0 +1,76 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+---
+<section class="relative min-h-screen flex items-center bg-gradient-to-br from-pool-deep via-pool-medium to-pool-deep overflow-hidden">
+  <!-- Animated background elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full bg-pool-light/10 blur-3xl animate-pulse"></div>
+    <div class="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gold/5 blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    <!-- Water ripple circles -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div class="w-[500px] h-[500px] rounded-full border border-white/5 animate-[ripple_4s_ease-out_infinite]"></div>
+      <div class="absolute inset-0 w-[500px] h-[500px] rounded-full border border-white/5 animate-[ripple_4s_ease-out_infinite_1s]"></div>
+      <div class="absolute inset-0 w-[500px] h-[500px] rounded-full border border-white/5 animate-[ripple_4s_ease-out_infinite_2s]"></div>
+    </div>
+  </div>
+
+  <Container class="relative z-10 py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight hero-title">
+          Votre piscine de rêve
+          <span class="block text-gold">commence ici</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-pool-surface/90 mb-10 max-w-2xl leading-relaxed hero-subtitle">
+          Depuis 1974, Astro Piscines conçoit et réalise des piscines d'exception à Genève et dans le canton de Vaud.
+        </p>
+        <div class="flex flex-wrap gap-4 hero-ctas">
+          <Button variant="primary" size="lg" href="/configurateur/">
+            Configurer ma piscine
+          </Button>
+          <Button variant="ghost" size="lg" href="/contact/" class="border-white text-white hover:bg-white hover:text-pool-deep">
+            Nous contacter
+          </Button>
+        </div>
+      </div>
+
+      <!-- Pool boy image -->
+      <div class="hidden lg:flex justify-center hero-image">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gold/20 rounded-full blur-2xl"></div>
+          <img
+            src="/pool-boy.jpg"
+            alt="Technicien Astro Piscines au bord d'une piscine"
+            class="relative w-[380px] h-auto rounded-2xl shadow-2xl object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  @keyframes ripple {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+
+  .hero-title { animation: fadeInUp 0.8s ease-out both; }
+  .hero-subtitle { animation: fadeInUp 0.8s ease-out 0.2s both; }
+  .hero-ctas { animation: fadeInUp 0.8s ease-out 0.4s both; }
+  .hero-image { animation: fadeInUp 1s ease-out 0.5s both; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -1,0 +1,294 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.beton;
+
+const faqItems = [
+  {
+    question: 'Quelles formes peut-on réaliser avec une piscine en béton ?',
+    answer: 'Le béton armé permet une liberté totale de formes : rectangulaire, ovale, en L, en haricot, couloir de nage, piscine à débordement ou toute forme libre imaginable. C\'est la seule technique qui s\'adapte à 100% à vos envies et aux contraintes de votre terrain.',
+  },
+  {
+    question: 'Quelle est la durée de vie d\'une piscine en béton ?',
+    answer: 'Une piscine en béton armé bien construite a une durée de vie de 30 à 50 ans, voire plus. La structure elle-même est quasi indestructible. Seul le revêtement (carrelage, liner ou PVC armé) devra être rénové tous les 10 à 15 ans selon le type choisi.',
+  },
+  {
+    question: 'Quel revêtement choisir pour une piscine en béton ?',
+    answer: 'Trois options principales s\'offrent à vous : le carrelage (esthétique haut de gamme, très durable), le liner (économique, large choix de coloris), ou le PVC armé (excellent rapport qualité-prix, résistant). Nos conseillers vous aident à choisir selon votre budget et vos préférences.',
+  },
+  {
+    question: 'Peut-on construire une piscine en béton sur un terrain en pente ?',
+    answer: 'Absolument. C\'est même l\'un des grands avantages du béton : il s\'adapte parfaitement aux terrains en pente, accidentés ou exigus. La structure est coulée sur place, ce qui permet de s\'ajuster à toutes les configurations topographiques.',
+  },
+  {
+    question: 'Quel est le délai de construction d\'une piscine en béton ?',
+    answer: 'Comptez entre 8 et 12 semaines pour la construction du bassin, hors terrassement et aménagements extérieurs. Ce délai inclut le coffrage, le ferraillage, le coulage du béton, le temps de séchage, l\'étanchéité et la pose du revêtement.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Terrassement',
+    description: 'Excavation du terrain selon les dimensions exactes du projet. Préparation du sol et mise en place du drainage si nécessaire.',
+    duration: '2 - 3 jours',
+  },
+  {
+    step: '02',
+    title: 'Ferraillage et coffrage',
+    description: 'Installation de la structure en acier (treillis soudé et armatures) qui assurera la solidité du bassin. Mise en place du coffrage pour les parois.',
+    duration: '1 - 2 semaines',
+  },
+  {
+    step: '03',
+    title: 'Coulage du béton',
+    description: 'Coulage du béton armé en une seule opération (gunitage ou béton projeté) pour garantir une structure monobloc étanche et résistante.',
+    duration: '1 - 2 jours',
+  },
+  {
+    step: '04',
+    title: 'Séchage et étanchéité',
+    description: 'Temps de cure du béton, puis application des couches d\'étanchéité. Contrôles de qualité et tests d\'imperméabilité.',
+    duration: '3 - 4 semaines',
+  },
+  {
+    step: '05',
+    title: 'Installation technique',
+    description: 'Pose du système de filtration, des buses de refoulement, des skimmers, du chauffage et de l\'éclairage LED.',
+    duration: '1 semaine',
+  },
+  {
+    step: '06',
+    title: 'Revêtement et finitions',
+    description: 'Pose du revêtement choisi (carrelage, liner ou PVC armé), installation des margelles et des équipements de sécurité.',
+    duration: '1 - 2 semaines',
+  },
+  {
+    step: '07',
+    title: 'Mise en eau et mise en service',
+    description: 'Remplissage du bassin, mise en route des équipements, équilibrage de l\'eau et formation à l\'utilisation de votre piscine.',
+    duration: '2 - 3 jours',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Sur mesure intégral',
+    description: 'Dimensions, formes et profondeurs exactement comme vous les imaginez. Aucune contrainte de catalogue.',
+  },
+  {
+    title: 'Solidité exceptionnelle',
+    description: 'Le béton armé offre une résistance mécanique inégalée, capable de supporter les pressions du terrain et les mouvements de sol.',
+  },
+  {
+    title: 'Liberté de revêtement',
+    description: 'Carrelage mosaïque, pâte de verre, liner, PVC armé : tous les revêtements sont compatibles avec le béton.',
+  },
+  {
+    title: 'Intégration paysagère',
+    description: 'Le béton s\'adapte à toutes les configurations de terrain : pente, espace restreint, forme irrégulière.',
+  },
+  {
+    title: 'Valeur patrimoniale',
+    description: 'Une piscine en béton augmente significativement la valeur de votre propriété grâce à sa durabilité et son caractère haut de gamme.',
+  },
+  {
+    title: 'Équipements intégrés',
+    description: 'Possibilité d\'intégrer nage à contre-courant, banquette immergée, escalier romain, balnéo et tout équipement sur mesure.',
+  },
+];
+---
+
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Piscine Béton sur Mesure"
+  heroSubtitle="La construction en béton armé offre une liberté totale pour créer la piscine de vos rêves. Formes libres, dimensions personnalisées et finitions premium."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Construction de Piscine en Béton"
+    description={seo.description}
+    url="/construction/piscine-beton/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Introduction -->
+  <section class="py-16 bg-white">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeading
+            title="Le béton : la référence pour une piscine sur mesure"
+            align="left"
+          />
+          <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+            <p>
+              La piscine en béton armé est la technique la plus polyvalente et la plus durable pour la construction de votre bassin. Utilisée par les professionnels les plus exigeants, elle permet de réaliser des piscines aux dimensions et aux formes totalement personnalisées.
+            </p>
+            <p>
+              Chez Astro Piscines, nous maîtrisons cette technique depuis plus de 50 ans. Nos équipes qualifiées utilisent la méthode du béton projeté (gunitage) pour créer des structures monobloc d'une solidité exceptionnelle, parfaitement adaptées aux conditions géologiques de la région genevoise et vaudoise.
+            </p>
+            <p>
+              Que vous envisagiez un couloir de nage de 25 mètres, une piscine à débordement avec vue sur le lac, ou un bassin familial aux courbes harmonieuses, le béton est la réponse technique idéale.
+            </p>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-pool-light to-pool-surface rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
+          <div class="text-center">
+            <div class="text-6xl mb-4">🏗️</div>
+            <p class="font-heading font-bold text-pool-deep text-xl">Construction béton armé</p>
+            <p class="text-gray-600 mt-2">Technique du béton projeté</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Les avantages du béton armé"
+        subtitle="Pourquoi la piscine en béton reste le choix privilégié des connaisseurs"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{benefit.description}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Les étapes de construction"
+        subtitle="Un processus rigoureux pour un résultat parfait"
+      />
+      <div class="max-w-4xl mx-auto space-y-8">
+        {processSteps.map((item) => (
+          <div class="flex gap-6 items-start">
+            <div class="w-14 h-14 bg-pool-deep text-white rounded-full flex items-center justify-center text-lg font-heading font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-grow">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                <h3 class="text-xl font-heading font-bold text-charcoal">{item.title}</h3>
+                <span class="text-sm text-gold font-semibold bg-gold/10 px-3 py-1 rounded-full">{item.duration}</span>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Indication -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Indication de prix"
+        subtitle="Des tarifs transparents adaptés à votre projet"
+      />
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <Card class="p-8 text-center">
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Essentielle</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Piscine 8 x 4 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 50'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Structure béton armé</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Liner PVC armé</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration à sable</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Escalier d'angle</li>
+          </ul>
+        </Card>
+        <Card class="p-8 text-center border-2 border-gold relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-charcoal text-xs font-heading font-bold px-4 py-1 rounded-full">POPULAIRE</div>
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Confort</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Piscine 10 x 5 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 70'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Structure béton armé</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Carrelage ou PVC armé</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration à sable + pompe à chaleur</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Escalier romain</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Éclairage LED</li>
+          </ul>
+        </Card>
+        <Card class="p-8 text-center">
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Prestige</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Piscine 12 x 6 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 95'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Structure béton armé premium</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Mosaïque pâte de verre</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Automatisation complète</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Débordement ou miroir d'eau</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Nage à contre-courant</li>
+          </ul>
+        </Card>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-8">
+        * Prix indicatifs hors terrassement et aménagements extérieurs. Chaque projet fait l'objet d'un devis personnalisé gratuit.
+      </p>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Questions fréquentes"
+        subtitle="Tout savoir sur la piscine en béton"
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((faq) => (
+          <details class="group bg-gray-50 rounded-xl p-6 cursor-pointer">
+            <summary class="flex justify-between items-center font-heading font-semibold text-pool-deep text-lg list-none">
+              {faq.question}
+              <span class="ml-4 text-gold group-open:rotate-45 transition-transform text-2xl">+</span>
+            </summary>
+            <p class="mt-4 text-gray-700 leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Votre piscine béton sur mesure vous attend
+        </h2>
+        <p class="text-xl text-pool-surface mb-8 max-w-2xl mx-auto">
+          Configurez votre projet en ligne ou rencontrez nos experts pour discuter de votre piscine en béton idéale.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/configurateur/" size="lg">
+            Configurer ma piscine
+          </Button>
+          <Button href="/contact/" variant="ghost" size="lg" class="!border-white !text-white hover:!bg-white hover:!text-pool-deep">
+            Demander un devis gratuit
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

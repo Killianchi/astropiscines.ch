@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustIndicators from '../components/sections/TrustIndicators.astro';
+import ServicesGrid from '../components/sections/ServicesGrid.astro';
+import ConfiguratorCTA from '../components/sections/ConfiguratorCTA.astro';
+import Locations from '../components/sections/Locations.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import BlogPreview from '../components/sections/BlogPreview.astro';
+import LocalBusiness from '../components/seo/LocalBusiness.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.home;
+---
+<BaseLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  alternateEn="/en/"
+  alternateFr="/"
+>
+  <LocalBusiness slot="schema" />
+
+  <Hero />
+  <TrustIndicators />
+  <ServicesGrid />
+  <ConfiguratorCTA />
+  <Testimonials />
+  <Locations />
+  <BlogPreview />
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+const pathname = Astro.url.pathname;
+const segments = pathname.split('/').filter(Boolean);
+const siteUrl = 'https://astro-piscines.ch';
+
+const items = [
+  { name: 'Accueil', url: siteUrl },
+  ...segments.map((seg, i) => ({
+    name: seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+    url: `${siteUrl}/${segments.slice(0, i + 1).join('/')}/`,
+  })),
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,192 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ServiceSchema from '../components/seo/ServiceSchema.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.renovation;
+
+const services = [
+  {
+    icon: '🔄',
+    title: 'Changement de Liner',
+    description: 'Remplacement de votre liner usé ou décoloré par un nouveau revêtement de qualité. Large choix de coloris et de textures pour personnaliser votre bassin.',
+    features: ['Liner armé 150/100', 'Coloris unis et imprimés', 'Frise décorative', 'Garantie 10 ans'],
+  },
+  {
+    icon: '🔍',
+    title: 'Détection de Fuites',
+    description: 'Localisation précise des fuites grâce à nos équipements de détection professionnels. Intervention rapide pour limiter les dégâts et la perte d\'eau.',
+    features: ['Détection par gaz traceur', 'Caméra endoscopique', 'Test de pression', 'Rapport détaillé'],
+  },
+  {
+    icon: '🏗️',
+    title: 'Réparation Structurelle',
+    description: 'Réparation des fissures, joints de carrelage, plages abîmées et structures fragilisées. Nos experts redonnent vie à votre piscine.',
+    features: ['Traitement des fissures', 'Réfection des joints', 'Renforcement structurel', 'Imperméabilisation'],
+  },
+  {
+    icon: '⚡',
+    title: 'Modernisation Technique',
+    description: 'Mise à jour de vos équipements : filtration, pompe, chauffage, éclairage LED, système de traitement automatique pour une piscine plus performante.',
+    features: ['Filtration dernière génération', 'Éclairage LED RGB', 'Traitement au sel', 'Pompe à chaleur'],
+  },
+];
+
+const beforeAfter = [
+  { label: 'Liner fissuré', before: 'Liner décoloré et fissuré après 15 ans', after: 'Nouveau liner armé gris anthracite' },
+  { label: 'Carrelage dégradé', before: 'Carrelage décollé et joints noircis', after: 'Mosaïque neuve avec joints époxy' },
+  { label: 'Local technique vétuste', before: 'Équipements obsolètes et énergivores', after: 'Installation moderne et économique' },
+];
+
+const faqItems = [
+  { question: 'Quand faut-il rénover sa piscine ?', answer: 'Les signes principaux sont : un liner qui se décolore ou se décolle, des fuites récurrentes, une filtration bruyante ou inefficace, des fissures visibles sur la structure, ou simplement l\'envie de moderniser votre bassin. En général, un liner doit être remplacé tous les 10 à 15 ans.' },
+  { question: 'Combien coûte une rénovation de piscine ?', answer: 'Le coût dépend de l\'étendue des travaux. Un simple changement de liner coûte entre 5 000 et 15 000 CHF selon la taille du bassin. Une rénovation complète (structure + revêtement + équipements) peut aller de 20 000 à 60 000 CHF. Nous établissons un devis gratuit après diagnostic.' },
+  { question: 'Combien de temps dure une rénovation ?', answer: 'Un changement de liner prend 3 à 5 jours. Une rénovation structurelle avec modernisation complète peut nécessiter 2 à 4 semaines. Nous planifions les travaux en basse saison (automne/hiver) pour que votre piscine soit prête pour l\'été.' },
+  { question: 'Peut-on changer la forme de sa piscine lors d\'une rénovation ?', answer: 'Oui, il est possible de modifier la forme, d\'ajouter des escaliers, une banquette immergée ou de modifier la profondeur. Ces travaux structurels nécessitent toutefois un budget plus conséquent et un délai plus long.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Rénovation de Piscines"
+  heroSubtitle="Redonnez vie à votre piscine avec nos experts. Liner, structure, équipements : nous intervenons à chaque étape pour un résultat impeccable."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Rénovation de Piscines"
+    description={seo.description}
+    url="/renovation/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Services de rénovation -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Nos Services de Rénovation"
+        subtitle="Une expertise complète pour restaurer, moderniser et embellir votre piscine existante."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map((service) => (
+          <Card class="p-8">
+            <div class="text-4xl mb-4">{service.icon}</div>
+            <h3 class="text-2xl font-heading font-bold text-pool-deep mb-3">{service.title}</h3>
+            <p class="text-gray-600 mb-6">{service.description}</p>
+            <ul class="space-y-2">
+              {service.features.map((feature) => (
+                <li class="flex items-center text-sm text-gray-700">
+                  <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Processus de rénovation -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Notre Processus"
+        subtitle="Un accompagnement étape par étape pour une rénovation réussie."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {[
+          { step: '01', title: 'Diagnostic', desc: 'Inspection complète de votre piscine : structure, revêtement, équipements et canalisations.' },
+          { step: '02', title: 'Devis Détaillé', desc: 'Proposition technique et financière claire, avec différentes options adaptées à votre budget.' },
+          { step: '03', title: 'Travaux', desc: 'Réalisation par nos équipes qualifiées, dans le respect des délais et des normes en vigueur.' },
+          { step: '04', title: 'Réception', desc: 'Mise en eau, tests de fonctionnement et remise de la documentation complète.' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pool-deep text-white rounded-full flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4">
+              {item.step}
+            </div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Avant / Après -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Avant / Après"
+        subtitle="Découvrez les transformations réalisées par nos équipes."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {beforeAfter.map((item) => (
+          <Card class="overflow-hidden">
+            <div class="grid grid-cols-2">
+              <div class="bg-gray-200 aspect-square flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="text-xs uppercase tracking-wider text-gray-500 mb-1">Avant</p>
+                  <p class="text-sm text-gray-600">{item.before}</p>
+                </div>
+              </div>
+              <div class="bg-pool-surface aspect-square flex items-center justify-center p-4">
+                <div class="text-center">
+                  <p class="text-xs uppercase tracking-wider text-pool-deep mb-1">Après</p>
+                  <p class="text-sm text-pool-deep">{item.after}</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 text-center">
+              <h3 class="font-heading font-bold text-pool-deep">{item.label}</h3>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur la rénovation de votre piscine."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Votre piscine mérite une seconde jeunesse
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Demandez un diagnostic gratuit et recevez un devis personnalisé pour la rénovation de votre piscine.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Demander un diagnostic</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

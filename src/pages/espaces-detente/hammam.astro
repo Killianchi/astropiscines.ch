@@ -1,0 +1,173 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.hammam;
+
+const features = [
+  {
+    title: 'Générateur de Vapeur',
+    description: 'Générateurs professionnels silencieux et performants, avec contrôle précis de la température (40-50°C) et du taux d\'humidité (100%). Démarrage rapide en quelques minutes.',
+    icon: '💨',
+  },
+  {
+    title: 'Mosaïque Artisanale',
+    description: 'Revêtement en mosaïque de verre, pierre naturelle ou zellige traditionnel. Motifs personnalisés pour une ambiance authentique et raffinée.',
+    icon: '🎨',
+  },
+  {
+    title: 'Aromathérapie',
+    description: 'Diffuseur d\'huiles essentielles intégré au générateur de vapeur. Eucalyptus, menthe, lavande : choisissez votre ambiance olfactive à chaque séance.',
+    icon: '🌿',
+  },
+  {
+    title: 'Chromothérapie',
+    description: 'Éclairage LED multicolore intégré à la voûte et aux assises. Programmation de cycles lumineux pour une expérience sensorielle complète.',
+    icon: '🌈',
+  },
+  {
+    title: 'Assises Chauffantes',
+    description: 'Banquettes ergonomiques avec chauffage intégré pour un confort optimal. Formes arrondies et pentes douces pour une position naturelle.',
+    icon: '🪑',
+  },
+  {
+    title: 'Ventilation',
+    description: 'Système de ventilation spécifique pour hammam, garantissant une circulation d\'air optimale et évitant tout problème d\'humidité dans les pièces adjacentes.',
+    icon: '🌀',
+  },
+];
+
+const process = [
+  { step: '01', title: 'Étude Technique', desc: 'Analyse de votre espace, étude de faisabilité, vérification des arrivées d\'eau et d\'électricité, et plan d\'évacuation de la vapeur.' },
+  { step: '02', title: 'Conception', desc: 'Plans 3D détaillés, choix des matériaux (mosaïque, pierre, tadelakt), sélection des équipements et validation du design.' },
+  { step: '03', title: 'Réalisation', desc: 'Construction par nos artisans spécialisés : étanchéité, pose de mosaïque, installation du générateur et de la ventilation.' },
+  { step: '04', title: 'Mise en Service', desc: 'Tests de fonctionnement, réglages de température et d\'humidité, formation à l\'utilisation et remise du dossier technique.' },
+];
+
+const faqItems = [
+  { question: 'Quelle surface faut-il pour un hammam ?', answer: 'Un hammam individuel nécessite au minimum 3 m2 (1,5 x 2 m). Pour un hammam familial confortable avec banquette, prévoyez 5 à 8 m2. La hauteur sous plafond doit être d\'au moins 2,20 m pour une voûte harmonieuse.' },
+  { question: 'Peut-on installer un hammam dans une salle de bain existante ?', answer: 'Oui, nous pouvons transformer une partie de votre salle de bain en hammam. Il faut toutefois une arrivée d\'eau, une évacuation, une alimentation électrique suffisante et une bonne ventilation. Nous étudions la faisabilité lors de la visite technique.' },
+  { question: 'Quelle est la consommation d\'un hammam ?', answer: 'Un générateur de vapeur consomme entre 3 et 9 kW selon la taille du hammam. Une séance de 30 minutes coûte environ 1 à 2 CHF en électricité. La consommation d\'eau est très faible : environ 1 litre par séance.' },
+  { question: 'Comment entretenir son hammam ?', answer: 'Après chaque utilisation, rincez les parois à l\'eau claire et aérez. Un nettoyage hebdomadaire avec un produit anti-calcaire est recommandé. Le détartrage du générateur doit être effectué tous les 3 à 6 mois selon la dureté de l\'eau.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Hammams"
+  heroSubtitle="Vivez l'expérience du hammam oriental chez vous. Vapeur enveloppante, mosaïques artisanales et aromathérapie pour un rituel de bien-être authentique."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Installation de Hammams"
+    description={seo.description}
+    url="/espaces-detente/hammam/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Caractéristiques -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Un Hammam d'Exception"
+        subtitle="Chaque détail est pensé pour vous offrir une expérience sensorielle complète et authentique."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map((feature) => (
+          <Card class="p-6">
+            <div class="text-3xl mb-3">{feature.icon}</div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{feature.title}</h3>
+            <p class="text-gray-600 text-sm">{feature.description}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Matériaux -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Revêtements et Finitions"
+        subtitle="Des matériaux nobles et durables pour un hammam qui traverse le temps."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Mosaïque de Verre', desc: 'Tesselles de verre colorées pour des motifs géométriques ou organiques. Résistante à la vapeur et facile d\'entretien. Large palette de couleurs disponibles.' },
+          { title: 'Zellige Marocain', desc: 'Carreaux artisanaux émaillés, fabriqués à la main au Maroc. Chaque pièce est unique, offrant un rendu authentique et chaleureux aux reflets changeants.' },
+          { title: 'Tadelakt', desc: 'Enduit de chaux naturel traditionnel, imperméable et lisse comme le marbre. Finition luxueuse sans joints, disponible dans de nombreuses teintes.' },
+        ].map((material) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{material.title}</h3>
+            <p class="text-gray-600 text-sm">{material.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Processus -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Notre Processus d'Installation"
+        subtitle="De l'étude technique à la mise en service, un accompagnement complet pour votre hammam."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {process.map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pool-deep text-white rounded-full flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4">
+              {item.step}
+            </div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur l'installation d'un hammam."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Votre hammam sur mesure
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Contactez-nous pour concevoir ensemble le hammam qui transformera votre quotidien.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Demander un devis</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

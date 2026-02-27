@@ -1,0 +1,177 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ServiceSchema from '../components/seo/ServiceSchema.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.equipements;
+
+const categories = [
+  {
+    title: 'Filtration',
+    description: 'Systèmes de filtration performants pour une eau toujours cristalline. Du filtre à sable classique au filtre à diatomées ultra-fin.',
+    products: [
+      { name: 'Filtre à sable', desc: 'Le standard fiable. Filtration à 30-40 microns, faible entretien.' },
+      { name: 'Filtre à cartouche', desc: 'Compact et sans contre-lavage. Idéal pour les petits bassins.' },
+      { name: 'Filtre à diatomées', desc: 'Filtration ultra-fine à 5 microns. L\'eau la plus pure possible.' },
+      { name: 'Filtre à verre', desc: 'Alternative écologique au sable. Filtration à 15 microns, durée de vie prolongée.' },
+    ],
+    icon: '🔄',
+  },
+  {
+    title: 'Chauffage',
+    description: 'Solutions de chauffage pour prolonger votre saison de baignade. Économiques et écologiques, nos systèmes s\'adaptent à tous les bassins.',
+    products: [
+      { name: 'Pompe à chaleur', desc: 'Le meilleur rapport performance/consommation. COP jusqu\'à 7.' },
+      { name: 'Échangeur thermique', desc: 'Raccordé à votre chaudière existante. Montée en température rapide.' },
+      { name: 'Réchauffeur électrique', desc: 'Solution simple et économique à l\'achat. Idéal en appoint.' },
+      { name: 'Chauffage solaire', desc: 'Capteurs solaires thermiques. Gratuit et écologique en fonctionnement.' },
+    ],
+    icon: '🌡️',
+  },
+  {
+    title: 'Traitement de l\'Eau',
+    description: 'Systèmes de traitement automatisés pour une eau saine avec un minimum d\'intervention. Adieu les yeux rouges et l\'odeur de chlore.',
+    products: [
+      { name: 'Électrolyseur au sel', desc: 'Production automatique de chlore naturel à partir du sel. Eau douce et agréable.' },
+      { name: 'Régulation pH', desc: 'Contrôle et ajustement automatique du pH pour un confort optimal.' },
+      { name: 'Traitement UV', desc: 'Désinfection par ultraviolets. Réduit de 80% le besoin en chlore.' },
+      { name: 'Ozonateur', desc: 'Traitement à l\'ozone pour une désinfection puissante et naturelle.' },
+    ],
+    icon: '💧',
+  },
+  {
+    title: 'Couvertures',
+    description: 'Protégez votre piscine, conservez la chaleur et sécurisez votre bassin avec nos solutions de couverture adaptées.',
+    products: [
+      { name: 'Volet roulant', desc: 'Couverture automatique à lames. Sécurité NF P90-308, isolation thermique.' },
+      { name: 'Bâche à barres', desc: 'Sécurité hiver et été. Résistante aux intempéries et aux UV.' },
+      { name: 'Couverture solaire', desc: 'Bâche à bulles pour chauffer l\'eau gratuitement. Gain de 5 à 8°C.' },
+      { name: 'Abri de piscine', desc: 'Abris bas, mi-hauts ou hauts. Baignade toute l\'année.' },
+    ],
+    icon: '🛡️',
+  },
+  {
+    title: 'Éclairage',
+    description: 'Illuminez votre piscine avec des solutions LED modernes et économes en énergie. Créez une ambiance unique pour vos soirées.',
+    products: [
+      { name: 'Projecteur LED', desc: 'Projecteur subaquatique LED blanc ou RGB. Basse consommation, haute luminosité.' },
+      { name: 'Spot encastré', desc: 'Éclairage discret pour les plages et les margelles. IP68.' },
+      { name: 'Fibre optique', desc: 'Effet ciel étoilé dans le bassin. Design spectaculaire.' },
+      { name: 'Éclairage périmétrique', desc: 'Bandes LED autour du bassin pour un balisage élégant.' },
+    ],
+    icon: '💡',
+  },
+  {
+    title: 'Automatisation',
+    description: 'Pilotez votre piscine depuis votre smartphone. Filtration, chauffage, éclairage, traitement : tout se contrôle à distance.',
+    products: [
+      { name: 'Coffret de commande', desc: 'Centralisation de tous les équipements. Programmation horaire.' },
+      { name: 'Application mobile', desc: 'Contrôle à distance via Wi-Fi. Notifications et alertes en temps réel.' },
+      { name: 'Sonde connectée', desc: 'Mesure en continu du pH, ORP, température et niveau d\'eau.' },
+      { name: 'Robot connecté', desc: 'Nettoyage automatique programmable depuis l\'application.' },
+    ],
+    icon: '📱',
+  },
+];
+
+const faqItems = [
+  { question: 'Comment choisir le bon système de filtration ?', answer: 'Le choix dépend du volume de votre bassin, de la qualité de l\'eau de remplissage et de votre budget. Le filtre à sable convient à la majorité des piscines. Pour une qualité d\'eau exceptionnelle, optez pour le filtre à diatomées. Nous vous conseillons lors de la visite technique.' },
+  { question: 'Une pompe à chaleur est-elle rentable en Suisse ?', answer: 'Oui, une pompe à chaleur piscine est rentable dès la première saison. Avec un COP moyen de 5, elle produit 5 kWh de chaleur pour 1 kWh d\'électricité consommé. Elle permet de prolonger la saison de mai à octobre, voire toute l\'année avec un modèle full inverter.' },
+  { question: 'Le traitement au sel abîme-t-il la piscine ?', answer: 'Non, la concentration en sel (3-5 g/L) est très faible, comparable à celle d\'une larme. Ce n\'est pas de l\'eau de mer (35 g/L). Les matériaux de votre piscine (liner, béton, inox) sont parfaitement compatibles. L\'eau est plus douce et agréable qu\'avec un traitement classique au chlore.' },
+  { question: 'Proposez-vous l\'installation seule ou aussi les équipements ?', answer: 'Nous proposons une offre complète : fourniture, installation et mise en service. Nous travaillons avec les meilleures marques (Pentair, Hayward, Zodiac, Bayrol) et nous assurons le service après-vente et la garantie constructeur.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Équipements Piscine"
+  heroSubtitle="Filtration, chauffage, traitement, éclairage, automatisation : tout ce dont votre piscine a besoin pour fonctionner parfaitement."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Équipements pour Piscines"
+    description={seo.description}
+    url="/equipements/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Catégories d'équipements -->
+  {categories.map((category, i) => (
+    <section class:list={['py-20', { 'bg-pool-surface': i % 2 === 1 }]}>
+      <Container>
+        <SectionHeading
+          title={category.title}
+          subtitle={category.description}
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {category.products.map((product) => (
+            <Card class="p-6">
+              <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{product.name}</h3>
+              <p class="text-gray-600 text-sm">{product.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </Container>
+    </section>
+  ))}
+
+  <!-- Marques partenaires -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Nos Marques Partenaires"
+        subtitle="Nous sélectionnons les équipements des marques les plus fiables du marché."
+      />
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        {['Pentair', 'Hayward', 'Zodiac', 'Bayrol', 'Pahlen', 'Astralpool'].map((brand) => (
+          <div class="bg-white rounded-xl shadow-sm p-6 flex items-center justify-center">
+            <span class="font-heading font-bold text-gray-400 text-lg">{brand}</span>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Réponses à vos questions sur les équipements de piscine."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Besoin de conseils sur vos équipements ?
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Nos techniciens vous guident vers les équipements les plus adaptés à votre piscine et à votre utilisation.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Demander un conseil</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

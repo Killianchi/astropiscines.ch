@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Configurator from '../components/configurator/Configurator';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.configurator;
+---
+<BaseLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  alternateEn="/en/configurator/"
+  alternateFr="/configurateur/"
+>
+  <BreadcrumbSchema slot="schema" />
+
+  <section class="bg-gradient-to-br from-pool-deep to-pool-medium pt-32 pb-12">
+    <Container>
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+          Configurez votre piscine
+        </h1>
+        <p class="text-xl text-pool-surface/90 max-w-2xl mx-auto">
+          Obtenez une estimation personnalisée en quelques clics. Choisissez vos options et découvrez le budget pour votre projet.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-12 bg-gray-50 min-h-screen">
+    <Container>
+      <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-10">
+        <Configurator client:load />
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateStr = new Intl.DateTimeFormat('fr-CH', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(post.data.date);
+---
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  date={dateStr}
+  category={post.data.category}
+>
+  <BreadcrumbSchema slot="schema" />
+  <Content />
+</BlogLayout>

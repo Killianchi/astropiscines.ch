@@ -1,0 +1,231 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.blog;
+
+const categories = [
+  { name: 'Tous', slug: 'all', active: true },
+  { name: 'Construction', slug: 'construction', active: false },
+  { name: 'Entretien', slug: 'entretien', active: false },
+  { name: 'Rénovation', slug: 'renovation', active: false },
+  { name: 'Bien-être', slug: 'bien-etre', active: false },
+  { name: 'Équipements', slug: 'equipements', active: false },
+];
+
+const posts = [
+  {
+    title: 'Comment préparer sa piscine pour l\'été : guide complet',
+    excerpt: 'La remise en route de votre piscine au printemps nécessite plusieurs étapes clés. Découvrez notre guide pas à pas pour une eau parfaite dès les premiers beaux jours.',
+    category: 'Entretien',
+    date: '15 mars 2025',
+    readTime: '8 min',
+    slug: '#',
+  },
+  {
+    title: 'Piscine béton vs coque : comment choisir ?',
+    excerpt: 'Chacune a ses avantages. Durabilité, délai, budget, personnalisation : nous comparons les deux solutions pour vous aider à faire le bon choix.',
+    category: 'Construction',
+    date: '28 février 2025',
+    readTime: '10 min',
+    slug: '#',
+  },
+  {
+    title: 'Traitement au sel : tout ce qu\'il faut savoir',
+    excerpt: 'L\'électrolyse au sel séduit de plus en plus de propriétaires de piscines. Avantages, inconvénients, installation et entretien : notre dossier complet.',
+    category: 'Équipements',
+    date: '10 février 2025',
+    readTime: '7 min',
+    slug: '#',
+  },
+  {
+    title: 'Les bienfaits du sauna finlandais sur la santé',
+    excerpt: 'Circulation sanguine, immunité, récupération sportive, gestion du stress : les bienfaits du sauna sont nombreux et scientifiquement prouvés.',
+    category: 'Bien-être',
+    date: '25 janvier 2025',
+    readTime: '6 min',
+    slug: '#',
+  },
+  {
+    title: 'Hivernage de piscine : les erreurs à éviter',
+    excerpt: 'Un hivernage mal réalisé peut endommager votre piscine et compliquer la remise en route. Voici les 7 erreurs les plus courantes et comment les éviter.',
+    category: 'Entretien',
+    date: '15 novembre 2024',
+    readTime: '5 min',
+    slug: '#',
+  },
+  {
+    title: 'Rénovation de piscine : quand et pourquoi ?',
+    excerpt: 'Liner usé, fissures, équipements obsolètes : comment savoir s\'il est temps de rénover ? Nos experts vous donnent les signes qui ne trompent pas.',
+    category: 'Rénovation',
+    date: '1er novembre 2024',
+    readTime: '6 min',
+    slug: '#',
+  },
+  {
+    title: 'Pergola bioclimatique : le guide d\'achat',
+    excerpt: 'Dimensions, matériaux, options, budget : tout ce qu\'il faut savoir avant d\'investir dans une pergola bioclimatique pour votre terrasse ou piscine.',
+    category: 'Équipements',
+    date: '20 octobre 2024',
+    readTime: '9 min',
+    slug: '#',
+  },
+  {
+    title: 'Piscine et réglementation suisse : ce qu\'il faut savoir',
+    excerpt: 'Permis de construire, distances aux limites, sécurité : le cadre réglementaire pour la construction d\'une piscine en Suisse romande.',
+    category: 'Construction',
+    date: '5 octobre 2024',
+    readTime: '7 min',
+    slug: '#',
+  },
+  {
+    title: 'Hammam vs sauna : lequel choisir ?',
+    excerpt: 'Chaleur sèche ou vapeur humide ? Découvrez les différences, les bienfaits spécifiques et nos recommandations pour choisir l\'installation idéale.',
+    category: 'Bien-être',
+    date: '18 septembre 2024',
+    readTime: '5 min',
+    slug: '#',
+  },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Blog & Conseils"
+  heroSubtitle="Retrouvez nos articles, guides pratiques et conseils d'experts pour profiter pleinement de votre piscine et de vos espaces de bien-être."
+>
+  <BreadcrumbSchema slot="schema" />
+
+  <!-- Catégories -->
+  <section class="py-8 border-b border-gray-100">
+    <Container>
+      <div class="flex flex-wrap gap-3 justify-center">
+        {categories.map((cat) => (
+          <button
+            class:list={[
+              'px-5 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-300',
+              cat.active
+                ? 'bg-pool-deep text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-pool-surface hover:text-pool-deep',
+            ]}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Articles mis en avant -->
+  <section class="py-12">
+    <Container>
+      <Card class="overflow-hidden" href={posts[0].slug}>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div class="bg-gradient-to-br from-pool-deep/10 to-pool-medium/10 aspect-video lg:aspect-auto flex items-center justify-center min-h-[300px]">
+            <p class="text-pool-deep/40 font-heading text-lg">Photo article</p>
+          </div>
+          <div class="p-8 lg:p-12 flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="bg-pool-surface text-pool-deep text-xs font-heading font-bold px-3 py-1 rounded-full">
+                {posts[0].category}
+              </span>
+              <span class="text-gray-400 text-sm">{posts[0].date}</span>
+              <span class="text-gray-400 text-sm">- {posts[0].readTime} de lecture</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-heading font-bold text-pool-deep mb-4">
+              {posts[0].title}
+            </h2>
+            <p class="text-gray-600 mb-6">{posts[0].excerpt}</p>
+            <div>
+              <Button href={posts[0].slug} variant="secondary" size="sm">Lire l'article</Button>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </Container>
+  </section>
+
+  <!-- Grille d'articles -->
+  <section class="py-12 pb-20">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.slice(1).map((post) => (
+          <Card class="overflow-hidden flex flex-col" href={post.slug}>
+            <div class="bg-gradient-to-br from-pool-deep/5 to-pool-medium/10 aspect-video flex items-center justify-center">
+              <p class="text-pool-deep/30 font-heading text-sm">Photo article</p>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="bg-pool-surface text-pool-deep text-xs font-heading font-bold px-3 py-1 rounded-full">
+                  {post.category}
+                </span>
+                <span class="text-gray-400 text-xs">{post.readTime}</span>
+              </div>
+              <h3 class="text-lg font-heading font-bold text-pool-deep mb-2 line-clamp-2">
+                {post.title}
+              </h3>
+              <p class="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">{post.excerpt}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-400 text-xs">{post.date}</span>
+                <span class="text-pool-medium text-sm font-heading font-semibold hover:text-pool-deep transition-colors">
+                  Lire la suite &rarr;
+                </span>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <!-- Pagination placeholder -->
+      <div class="flex justify-center mt-12 gap-2">
+        <span class="w-10 h-10 flex items-center justify-center rounded-lg bg-pool-deep text-white font-heading font-bold text-sm">1</span>
+        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 hover:bg-pool-surface hover:text-pool-deep transition-colors font-heading font-bold text-sm">2</a>
+        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 hover:bg-pool-surface hover:text-pool-deep transition-colors font-heading font-bold text-sm">3</a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <div class="max-w-2xl mx-auto text-center">
+        <SectionHeading
+          title="Restez Informé"
+          subtitle="Recevez nos derniers articles, conseils et offres spéciales directement dans votre boîte mail."
+        />
+        <div class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+          <input
+            type="email"
+            placeholder="votre@email.ch"
+            class="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pool-light focus:border-transparent"
+          />
+          <Button variant="primary">S'abonner</Button>
+        </div>
+        <p class="text-gray-500 text-xs mt-3">Pas de spam. Désabonnement en un clic.</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Vous avez un projet en tête ?
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Nos experts sont à votre disposition pour répondre à toutes vos questions et vous accompagner dans votre projet.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Nous contacter</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

@@ -1,0 +1,256 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import ServiceSchema from '../components/seo/ServiceSchema.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../utils/seo';
+
+const seo = pageSEO.entretien;
+
+const plans = [
+  {
+    name: 'Essentiel',
+    price: '120',
+    frequency: '/mois',
+    description: 'L\'entretien de base pour maintenir votre piscine en bon état toute l\'année.',
+    features: [
+      'Visite mensuelle',
+      'Analyse de l\'eau',
+      'Ajustement pH et chlore',
+      'Nettoyage du skimmer',
+      'Contrôle de la filtration',
+      'Rapport d\'intervention',
+    ],
+    excluded: [
+      'Nettoyage complet du bassin',
+      'Hivernage / remise en route',
+      'Intervention d\'urgence',
+      'Pièces détachées incluses',
+    ],
+    popular: false,
+    cta: 'Choisir Essentiel',
+  },
+  {
+    name: 'Confort',
+    price: '220',
+    frequency: '/mois',
+    description: 'La formule idéale pour une piscine toujours impeccable sans effort.',
+    features: [
+      'Visite bimensuelle',
+      'Analyse complète de l\'eau',
+      'Ajustement pH, chlore et TAC',
+      'Nettoyage complet du bassin',
+      'Nettoyage de la ligne d\'eau',
+      'Contrôle complet des équipements',
+      'Hivernage inclus',
+      'Remise en route au printemps',
+      'Rapport d\'intervention détaillé',
+    ],
+    excluded: [
+      'Intervention d\'urgence prioritaire',
+      'Pièces détachées incluses',
+    ],
+    popular: true,
+    cta: 'Choisir Confort',
+  },
+  {
+    name: 'Premium',
+    price: '380',
+    frequency: '/mois',
+    description: 'Le service tout compris pour une tranquillité totale, 365 jours par an.',
+    features: [
+      'Visite hebdomadaire',
+      'Analyse complète de l\'eau',
+      'Traitement complet de l\'eau',
+      'Nettoyage intégral du bassin',
+      'Nettoyage de la ligne d\'eau',
+      'Contrôle et maintenance des équipements',
+      'Hivernage complet inclus',
+      'Remise en route au printemps',
+      'Intervention d\'urgence prioritaire (48h)',
+      'Pièces d\'usure incluses',
+      'Produits de traitement inclus',
+      'Interlocuteur dédié',
+    ],
+    excluded: [],
+    popular: false,
+    cta: 'Choisir Premium',
+  },
+];
+
+const additionalServices = [
+  { title: 'Hivernage', desc: 'Mise en hivernage complète de votre piscine avant l\'hiver. Bâchage, traitement choc, protection des équipements.', price: 'Dès 350 CHF' },
+  { title: 'Remise en Route', desc: 'Remise en service de votre piscine au printemps. Nettoyage, analyse, traitement et vérification de tous les équipements.', price: 'Dès 300 CHF' },
+  { title: 'Traitement Choc', desc: 'Traitement d\'urgence pour eau verte, trouble ou problème de qualité. Intervention rapide et efficace.', price: 'Dès 180 CHF' },
+  { title: 'Détartrage Filtre', desc: 'Nettoyage en profondeur et détartrage de votre filtre à sable ou à cartouche pour une filtration optimale.', price: 'Dès 150 CHF' },
+];
+
+const faqItems = [
+  { question: 'Puis-je changer de formule en cours d\'année ?', answer: 'Oui, vous pouvez passer à une formule supérieure à tout moment. Le passage à une formule inférieure est possible à chaque date anniversaire de votre contrat, avec un préavis d\'un mois.' },
+  { question: 'Quelle est la durée d\'engagement ?', answer: 'Nos contrats sont annuels avec tacite reconduction. Vous pouvez résilier avec un préavis de 2 mois avant la date anniversaire. Aucun frais de résiliation n\'est appliqué.' },
+  { question: 'Intervenez-vous en urgence le week-end ?', answer: 'Avec la formule Premium, nous garantissons une intervention sous 48h, y compris le week-end en saison. Pour les autres formules, les interventions d\'urgence sont facturées au tarif horaire en vigueur.' },
+  { question: 'Les produits chimiques sont-ils inclus ?', answer: 'Les produits de traitement sont inclus uniquement dans la formule Premium. Pour les formules Essentiel et Confort, les produits sont facturés en supplément au tarif préférentiel de nos clients sous contrat.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Entretien de Piscines"
+  heroSubtitle="Des formules d'entretien adaptées à vos besoins pour profiter de votre piscine en toute sérénité, toute l'année."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Entretien de Piscines"
+    description={seo.description}
+    url="/entretien/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Pourquoi un contrat -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Pourquoi un Contrat d'Entretien ?"
+        subtitle="Un entretien régulier prolonge la durée de vie de votre piscine et garantit une eau saine en permanence."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { icon: '🛡️', title: 'Protection', desc: 'Prévenez les pannes coûteuses et les dégradations. Un entretien régulier évite les réparations d\'urgence.' },
+          { icon: '💧', title: 'Eau Parfaite', desc: 'Une eau toujours limpide et équilibrée, sans risque pour la santé. Baignade en toute confiance.' },
+          { icon: '💰', title: 'Économies', desc: 'Réduisez votre consommation d\'eau, d\'énergie et de produits chimiques grâce à un suivi professionnel.' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="text-4xl mb-4">{item.icon}</div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Table -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Nos Forfaits d'Entretien"
+        subtitle="Choisissez la formule adaptée à vos besoins. Tous les prix sont en CHF, TVA incluse."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        {plans.map((plan) => (
+          <div class:list={[
+            'bg-white rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative flex flex-col',
+            { 'ring-2 ring-gold scale-105 z-10': plan.popular },
+          ]}>
+            {plan.popular && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-charcoal text-sm font-heading font-bold px-6 py-1 rounded-full">
+                Le plus populaire
+              </div>
+            )}
+            <div class="p-8 text-center border-b border-gray-100">
+              <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">{plan.name}</h3>
+              <p class="text-gray-500 text-sm mb-6">{plan.description}</p>
+              <div class="flex items-baseline justify-center">
+                <span class="text-5xl font-heading font-bold text-pool-deep">{plan.price}</span>
+                <span class="text-lg text-gray-500 ml-1">CHF{plan.frequency}</span>
+              </div>
+            </div>
+            <div class="p-8 flex-1 flex flex-col">
+              <ul class="space-y-3 flex-1">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start text-sm">
+                    <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+                {plan.excluded.map((feature) => (
+                  <li class="flex items-start text-sm">
+                    <svg class="w-5 h-5 text-gray-300 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-gray-400">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-8">
+                <Button
+                  href="/contact/"
+                  variant={plan.popular ? 'primary' : 'ghost'}
+                  size="lg"
+                  class="w-full justify-center"
+                >
+                  {plan.cta}
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-8">
+        Tarifs indicatifs pour une piscine de taille standard (8x4m). Devis personnalisé sur demande.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Services Ponctuels -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Services Ponctuels"
+        subtitle="En complément ou sans contrat, nous intervenons pour des prestations à la demande."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {additionalServices.map((service) => (
+          <Card class="p-6">
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{service.title}</h3>
+            <p class="text-gray-600 text-sm mb-4">{service.desc}</p>
+            <p class="font-heading font-bold text-gold">{service.price}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions Fréquentes"
+        subtitle="Tout savoir sur nos contrats d'entretien."
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((item) => (
+          <Card class="p-6" hover={false}>
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Profitez de votre piscine sans contrainte
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Confiez l'entretien de votre piscine à nos experts et profitez simplement de la baignade.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Demander un devis</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

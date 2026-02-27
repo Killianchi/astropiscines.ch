@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+}
+const { name, description, url, image } = Astro.props;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name,
+  description,
+  url: `https://astro-piscines.ch${url}`,
+  provider: { "@type": "LocalBusiness", name: "Astro Piscines", "@id": "https://astro-piscines.ch/#nyon" },
+  areaServed: [{ "@type": "State", name: "Canton de Vaud" }, { "@type": "State", name: "Canton de Genève" }],
+  ...(image ? { image: `https://astro-piscines.ch${image}` } : {}),
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

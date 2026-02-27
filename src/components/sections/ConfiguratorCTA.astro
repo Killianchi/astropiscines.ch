@@ -1,0 +1,35 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+---
+<section class="py-20 bg-gradient-to-r from-pool-deep to-charcoal relative overflow-hidden">
+  <!-- Decorative pool shape -->
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 opacity-10">
+    <svg width="400" height="300" viewBox="0 0 400 300" fill="none">
+      <ellipse cx="200" cy="150" rx="180" ry="120" stroke="currentColor" stroke-width="2" class="text-gold" />
+      <ellipse cx="200" cy="150" rx="150" ry="100" stroke="currentColor" stroke-width="1" class="text-pool-light" />
+      <ellipse cx="200" cy="150" rx="120" ry="80" stroke="currentColor" stroke-width="0.5" class="text-pool-light" />
+    </svg>
+  </div>
+
+  <Container class="relative z-10">
+    <div class="max-w-2xl">
+      <div class="inline-block px-4 py-1 bg-gold/20 rounded-full text-gold text-sm font-medium mb-6">
+        Outil en ligne
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+        Configurez votre piscine
+        <span class="text-gold">en quelques clics</span>
+      </h2>
+      <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+        Obtenez une estimation personnalisée instantanément. Choisissez le type, la taille, les options et découvrez le budget pour votre projet.
+      </p>
+      <Button variant="primary" size="lg" href="/configurateur/">
+        Lancer le configurateur
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </Button>
+    </div>
+  </Container>
+</section>

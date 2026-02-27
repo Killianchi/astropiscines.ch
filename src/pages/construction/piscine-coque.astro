@@ -1,0 +1,343 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.coque;
+
+const faqItems = [
+  {
+    question: 'Qu\'est-ce qu\'une piscine coque polyester ?',
+    answer: 'Une piscine coque est un bassin préfabriqué en usine à partir de fibre de verre et de résine polyester. La coque est livrée en un seul bloc et déposée dans l\'excavation préparée. Cette technique offre une installation très rapide (1 à 2 semaines) et une étanchéité parfaite dès la pose.',
+  },
+  {
+    question: 'Quelle est la durée de vie d\'une piscine coque ?',
+    answer: 'Une piscine coque de qualité a une durée de vie de 20 à 30 ans. Le gel coat de surface peut être rénové si nécessaire pour lui redonner son éclat. La structure en fibre de verre est extrêmement résistante aux chocs et aux variations de température.',
+  },
+  {
+    question: 'Peut-on personnaliser les dimensions d\'une piscine coque ?',
+    answer: 'Les piscines coques sont disponibles dans un large catalogue de formes et dimensions, de 4 à 12 mètres de long. Bien que les dimensions soient standardisées, le choix est vaste : rectangulaire, ovale, haricot, avec banquette intégrée, plage immergée, etc. Nous vous aidons à trouver le modèle parfait pour votre espace.',
+  },
+  {
+    question: 'Comment la coque est-elle livrée et installée ?',
+    answer: 'La coque est transportée par camion spécialisé et mise en place à l\'aide d\'une grue. Le terrain doit être accessible pour le véhicule de livraison. Nos équipes préparent l\'excavation avec un lit de gravier, posent la coque, réalisent le remblaiement technique et connectent tous les équipements.',
+  },
+  {
+    question: 'La piscine coque résiste-t-elle au gel ?',
+    answer: 'Oui, les coques polyester de qualité sont conçues pour résister aux cycles de gel et dégel, ce qui est particulièrement important en Suisse. La flexibilité naturelle de la fibre de verre lui permet d\'absorber les mouvements du sol sans se fissurer.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Choix du modèle',
+    description: 'Sélection de la forme, des dimensions et de la couleur parmi notre catalogue de plus de 50 modèles. Visite technique de votre terrain pour valider l\'accessibilité.',
+    duration: '1 - 2 jours',
+  },
+  {
+    step: '02',
+    title: 'Terrassement',
+    description: 'Excavation aux dimensions exactes de la coque avec une surlargeur technique. Préparation du fond avec un lit de gravier compacté et drainant.',
+    duration: '1 - 2 jours',
+  },
+  {
+    step: '03',
+    title: 'Livraison et pose',
+    description: 'Acheminement de la coque par transport exceptionnel et mise en place à la grue dans l\'excavation. Calage et mise à niveau de précision.',
+    duration: '1 jour',
+  },
+  {
+    step: '04',
+    title: 'Remblaiement technique',
+    description: 'Remplissage simultané du bassin en eau et du pourtour en gravier, couche par couche, pour assurer une pression équilibrée et un calage parfait.',
+    duration: '1 - 2 jours',
+  },
+  {
+    step: '05',
+    title: 'Raccordements et finitions',
+    description: 'Installation du local technique, raccordement de la filtration, pose des margelles et des plages, mise en service de tous les équipements.',
+    duration: '3 - 5 jours',
+  },
+];
+
+const shapes = [
+  { name: 'Rectangulaire', sizes: '6x3 à 12x6 m', description: 'Le classique indémodable, idéal pour la nage et les jeux.' },
+  { name: 'Ovale', sizes: '5x3 à 10x5 m', description: 'Lignes douces et élégantes, parfait pour les jardins paysagers.' },
+  { name: 'Haricot', sizes: '6x3 à 9x4 m', description: 'Forme organique qui s\'intègre naturellement dans le paysage.' },
+  { name: 'Mini-piscine', sizes: '4x2.5 à 5x3 m', description: 'Compacte et tendance, idéale pour les petits espaces et terrasses.' },
+  { name: 'Avec plage immergée', sizes: '7x3.5 à 10x5 m', description: 'Zone peu profonde intégrée pour la détente et les enfants.' },
+  { name: 'Couloir de nage', sizes: '8x2.5 à 12x3 m', description: 'Format allongé dédié à la nage sportive, même dans les espaces étroits.' },
+];
+
+const benefits = [
+  {
+    title: 'Installation ultra-rapide',
+    description: 'De la livraison à la baignade en 1 à 2 semaines seulement. La solution la plus rapide pour profiter de votre piscine.',
+  },
+  {
+    title: 'Budget maîtrisé',
+    description: 'À partir de CHF 35\'000, la piscine coque offre le meilleur rapport qualité-prix du marché.',
+  },
+  {
+    title: 'Étanchéité garantie',
+    description: 'La coque monobloc assure une étanchéité parfaite dès la pose. Aucun risque de fuite aux jointures.',
+  },
+  {
+    title: 'Entretien simplifié',
+    description: 'Le gel coat lisse réduit l\'adhérence des algues et facilite le nettoyage. Moins de produits, moins de temps d\'entretien.',
+  },
+  {
+    title: 'Confort de baignade',
+    description: 'Surface lisse et douce au toucher, sans aspérité. Agréable pour les pieds et la peau, idéale pour les enfants.',
+  },
+  {
+    title: 'Résistance éprouvée',
+    description: 'La fibre de verre est flexible et résistante. Elle supporte les mouvements de terrain et les cycles de gel sans se fissurer.',
+  },
+];
+---
+
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Piscine Coque Polyester"
+  heroSubtitle="Une installation rapide et un budget maîtrisé sans compromis sur la qualité. Découvrez notre gamme de piscines coques préfabriquées."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Installation de Piscine Coque Polyester"
+    description={seo.description}
+    url="/construction/piscine-coque/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Introduction -->
+  <section class="py-16 bg-white">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeading
+            title="Rapidité et qualité : la piscine coque"
+            align="left"
+          />
+          <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+            <p>
+              La piscine coque polyester est la solution idéale pour ceux qui souhaitent profiter rapidement de leur bassin sans sacrifier la qualité. Fabriquée en usine dans des conditions contrôlées, chaque coque bénéficie d'un processus de fabrication rigoureux qui garantit une qualité constante et une finition impeccable.
+            </p>
+            <p>
+              Chez Astro Piscines, nous sélectionnons exclusivement des coques de fabricants européens reconnus, avec des épaisseurs de paroi supérieures aux standards du marché. Résultat : une piscine livrée et installée en quelques jours, avec une garantie décennale sur la structure.
+            </p>
+            <p>
+              Avec plus de 50 modèles disponibles dans notre catalogue, vous trouverez forcément la forme et les dimensions qui correspondent à votre jardin et à vos envies de baignade.
+            </p>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-pool-light to-pool-surface rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
+          <div class="text-center">
+            <div class="text-6xl mb-4">⚡</div>
+            <p class="font-heading font-bold text-pool-deep text-xl">Installation en 1 à 2 semaines</p>
+            <p class="text-gray-600 mt-2">Coque monobloc préfabriquée</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Timeline Highlight -->
+  <section class="py-12 bg-gold/10">
+    <Container>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-center">
+        <div>
+          <p class="text-5xl font-heading font-bold text-pool-deep">1-2</p>
+          <p class="text-gray-600 font-heading">semaines d'installation</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gold/30"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-pool-deep">50+</p>
+          <p class="text-gray-600 font-heading">modèles disponibles</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gold/30"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-pool-deep">10</p>
+          <p class="text-gray-600 font-heading">ans de garantie</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gold/30"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-pool-deep">35k</p>
+          <p class="text-gray-600 font-heading">CHF à partir de</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Les avantages de la piscine coque"
+        subtitle="Une solution éprouvée qui séduit de plus en plus de propriétaires"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{benefit.description}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Shape Catalog -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Notre catalogue de formes"
+        subtitle="Un large choix pour tous les goûts et toutes les configurations"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {shapes.map((shape) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-1">{shape.name}</h3>
+            <p class="text-sm text-gold font-semibold mb-3">{shape.sizes}</p>
+            <p class="text-gray-600 leading-relaxed">{shape.description}</p>
+          </Card>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <p class="text-gray-500 mb-4">Vous ne trouvez pas la forme idéale ? Contactez-nous pour découvrir l'ensemble de notre catalogue.</p>
+        <Button href="/contact/" variant="secondary">
+          Voir tout le catalogue
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Les étapes d'installation"
+        subtitle="Un processus rapide et maîtrisé de bout en bout"
+      />
+      <div class="max-w-4xl mx-auto space-y-8">
+        {processSteps.map((item) => (
+          <div class="flex gap-6 items-start">
+            <div class="w-14 h-14 bg-pool-deep text-white rounded-full flex items-center justify-center text-lg font-heading font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-grow">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                <h3 class="text-xl font-heading font-bold text-charcoal">{item.title}</h3>
+                <span class="text-sm text-gold font-semibold bg-gold/10 px-3 py-1 rounded-full">{item.duration}</span>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Indication -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Indication de prix"
+        subtitle="Des formules claires pour tous les budgets"
+      />
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <Card class="p-8 text-center">
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Compacte</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Coque 6 x 3 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 35'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Coque polyester renforcée</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration à cartouche</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Escalier intégré</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Margelles standard</li>
+          </ul>
+        </Card>
+        <Card class="p-8 text-center border-2 border-gold relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-charcoal text-xs font-heading font-bold px-4 py-1 rounded-full">POPULAIRE</div>
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Familiale</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Coque 8 x 4 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 45'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Coque polyester premium</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration à sable</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Escalier + banquette</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Éclairage LED</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Pompe à chaleur</li>
+          </ul>
+        </Card>
+        <Card class="p-8 text-center">
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Grand format</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Coque 10 x 5 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 55'000</p>
+          <ul class="text-sm text-gray-600 space-y-2 text-left">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Coque polyester XL</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration haut débit</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Plage immergée</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Éclairage LED multicolore</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Volet roulant automatique</li>
+          </ul>
+        </Card>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-8">
+        * Prix indicatifs incluant la fourniture et la pose. Terrassement et aménagements extérieurs en supplément. Devis gratuit sur demande.
+      </p>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Questions fréquentes"
+        subtitle="Tout savoir sur la piscine coque polyester"
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((faq) => (
+          <details class="group bg-gray-50 rounded-xl p-6 cursor-pointer">
+            <summary class="flex justify-between items-center font-heading font-semibold text-pool-deep text-lg list-none">
+              {faq.question}
+              <span class="ml-4 text-gold group-open:rotate-45 transition-transform text-2xl">+</span>
+            </summary>
+            <p class="mt-4 text-gray-700 leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Prêt à plonger dans votre nouvelle piscine ?
+        </h2>
+        <p class="text-xl text-pool-surface mb-8 max-w-2xl mx-auto">
+          Avec la piscine coque, vous pourriez nager dans votre jardin d'ici quelques semaines. Configurez votre projet dès maintenant.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/configurateur/" size="lg">
+            Configurer ma piscine coque
+          </Button>
+          <Button href="/contact/" variant="ghost" size="lg" class="!border-white !text-white hover:!bg-white hover:!text-pool-deep">
+            Demander un devis gratuit
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

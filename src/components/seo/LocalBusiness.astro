@@ -1,0 +1,56 @@
+---
+const businesses = [
+  {
+    "@type": "LocalBusiness",
+    "@id": "https://astro-piscines.ch/#nyon",
+    name: "Astro Piscines — Nyon",
+    image: "https://astro-piscines.ch/og-default.jpg",
+    telephone: "+41842520520",
+    email: "info@astro-piscines.ch",
+    url: "https://astro-piscines.ch",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Route de Saint-Cergue 293",
+      addressLocality: "Nyon",
+      postalCode: "1260",
+      addressCountry: "CH",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 46.383, longitude: 6.234 },
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "17:00" },
+    ],
+    priceRange: "CHF 15'000 - CHF 150'000+",
+    areaServed: ["Canton de Vaud", "Canton de Genève"],
+  },
+  {
+    "@type": "LocalBusiness",
+    "@id": "https://astro-piscines.ch/#chene-bourg",
+    name: "Astro Piscines — Chêne-Bourg",
+    image: "https://astro-piscines.ch/og-default.jpg",
+    telephone: "+41842520520",
+    email: "info@astro-piscines.ch",
+    url: "https://astro-piscines.ch",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Chemin de la Mousse 131",
+      addressLocality: "Chêne-Bourg",
+      postalCode: "1225",
+      addressCountry: "CH",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 46.195, longitude: 6.189 },
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "17:00" },
+    ],
+    priceRange: "CHF 15'000 - CHF 150'000+",
+    areaServed: ["Canton de Vaud", "Canton de Genève"],
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": businesses,
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

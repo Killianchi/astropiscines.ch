@@ -1,0 +1,157 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.espacesDetente;
+
+const spaces = [
+  {
+    title: 'Sauna',
+    description: 'Profitez des bienfaits du sauna finlandais dans le confort de votre maison. Bois massif, poêle performant et design personnalisé pour des séances de relaxation authentiques.',
+    features: ['Sauna intérieur et extérieur', 'Bois de cèdre ou d\'épicéa', 'Poêle électrique ou à bois', 'Sur mesure'],
+    href: '/espaces-detente/sauna/',
+    image: 'Sauna en bois massif',
+  },
+  {
+    title: 'Hammam',
+    description: 'Créez votre propre hammam avec générateur de vapeur, assises en mosaïque et aromathérapie. Un rituel oriental de bien-être à domicile.',
+    features: ['Générateur de vapeur', 'Mosaïque artisanale', 'Aromathérapie intégrée', 'Chromothérapie'],
+    href: '/espaces-detente/hammam/',
+    image: 'Hammam en mosaïque',
+  },
+  {
+    title: 'Jacuzzi',
+    description: 'Détendez-vous dans un jacuzzi de qualité professionnelle. Jets hydromassants, système de filtration performant et design élégant pour votre terrasse ou intérieur.',
+    features: ['Large gamme de modèles', 'Jets hydromassants', 'Éclairage LED', 'Installation complète'],
+    href: '/espaces-detente/jacuzzi/',
+    image: 'Jacuzzi design',
+  },
+];
+
+const benefits = [
+  { icon: '❤️', title: 'Santé', desc: 'Améliorez votre circulation sanguine, soulagez les tensions musculaires et renforcez votre système immunitaire.' },
+  { icon: '🧘', title: 'Relaxation', desc: 'Évacuez le stress quotidien et retrouvez un sommeil réparateur grâce à des séances régulières.' },
+  { icon: '✨', title: 'Beauté', desc: 'Purifiez votre peau, éliminez les toxines et profitez d\'un teint éclatant naturellement.' },
+  { icon: '🏠', title: 'Valorisation', desc: 'Augmentez la valeur de votre bien immobilier avec un espace bien-être de qualité professionnelle.' },
+];
+---
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Espaces Détente"
+  heroSubtitle="Créez votre oasis de bien-être à domicile. Sauna, hammam, jacuzzi : nos experts conçoivent et installent votre espace de relaxation sur mesure."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Espaces Détente - Sauna, Hammam, Jacuzzi"
+    description={seo.description}
+    url="/espaces-detente/"
+  />
+  <BreadcrumbSchema slot="schema" />
+
+  <!-- Bienfaits -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Les Bienfaits du Bien-Être"
+        subtitle="Investir dans un espace détente, c'est investir dans votre santé et votre qualité de vie."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map((item) => (
+          <div class="text-center">
+            <div class="text-4xl mb-4">{item.icon}</div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Nos espaces -->
+  <section class="py-20 bg-pool-surface">
+    <Container>
+      <SectionHeading
+        title="Nos Espaces Détente"
+        subtitle="Découvrez nos solutions de bien-être et trouvez celle qui correspond à vos envies."
+      />
+      <div class="space-y-12">
+        {spaces.map((space, i) => (
+          <Card class="overflow-hidden">
+            <div class:list={['grid grid-cols-1 lg:grid-cols-2 gap-0', { 'lg:direction-rtl': i % 2 === 1 }]}>
+              <div class="bg-gradient-to-br from-pool-deep/10 to-pool-medium/10 aspect-video lg:aspect-auto flex items-center justify-center">
+                <p class="text-pool-deep/40 font-heading text-lg">{space.image}</p>
+              </div>
+              <div class="p-8 lg:p-12 flex flex-col justify-center" style={i % 2 === 1 ? 'direction: ltr' : ''}>
+                <h3 class="text-3xl font-heading font-bold text-pool-deep mb-4">{space.title}</h3>
+                <p class="text-gray-600 mb-6">{space.description}</p>
+                <ul class="space-y-2 mb-8">
+                  {space.features.map((feature) => (
+                    <li class="flex items-center text-sm text-gray-700">
+                      <svg class="w-5 h-5 text-gold mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div>
+                  <Button href={space.href} variant="secondary">Découvrir nos {space.title.toLowerCase()}s</Button>
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Approche -->
+  <section class="py-20">
+    <Container>
+      <SectionHeading
+        title="Notre Approche"
+        subtitle="De la conception à l'installation, nous vous accompagnons dans la création de votre espace bien-être."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { step: '01', title: 'Conception', desc: 'Étude de votre espace, choix des matériaux et des équipements. Plans 3D pour visualiser votre projet.' },
+          { step: '02', title: 'Installation', desc: 'Réalisation par nos artisans qualifiés. Plomberie, électricité, ventilation et finitions soignées.' },
+          { step: '03', title: 'Suivi', desc: 'Mise en service, formation à l\'utilisation et contrat de maintenance pour votre tranquillité.' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="w-16 h-16 bg-pool-deep text-white rounded-full flex items-center justify-center text-xl font-heading font-bold mx-auto mb-4">
+              {item.step}
+            </div>
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-pool-deep to-pool-medium">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Créez votre espace bien-être
+        </h2>
+        <p class="text-pool-surface text-lg mb-8 max-w-2xl mx-auto">
+          Prenez rendez-vous avec nos conseillers pour concevoir l'espace détente qui vous ressemble.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact/" variant="primary" size="lg">Prendre rendez-vous</Button>
+          <Button href="/configurateur/" variant="ghost" size="lg" class="border-white text-white hover:bg-white hover:text-pool-deep">Configurateur en ligne</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

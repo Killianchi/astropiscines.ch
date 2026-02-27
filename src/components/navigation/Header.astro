@@ -1,0 +1,120 @@
+---
+import Container from '../ui/Container.astro';
+import { mainNav } from '../../data/navigation';
+import MobileMenu from './MobileMenu.tsx';
+
+// Split nav: main services in the center, company links go to right area
+const serviceNav = mainNav.filter(item => !['/a-propos/', '/contact/'].includes(item.href));
+---
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <Container>
+    <div class="flex items-center h-20 gap-6">
+      <!-- Logo -->
+      <a href="/" class="flex items-center shrink-0 z-10">
+        <img
+          src="/Logo_hd-svg.svg"
+          alt="Astro Piscines"
+          class="h-12 w-auto header-logo"
+        />
+      </a>
+
+      <!-- Desktop Nav (centered) -->
+      <nav class="hidden xl:flex items-center gap-0.5 flex-1 justify-center">
+        {serviceNav.map((item) => (
+          <div class="relative group">
+            <a
+              href={item.href}
+              class="px-2.5 py-2 text-sm font-medium text-white/90 hover:text-white header-scrolled-text whitespace-nowrap transition-colors inline-flex items-center gap-1"
+            >
+              {item.label}
+              {item.children && (
+                <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px]">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2 text-sm text-charcoal hover:bg-pool-surface hover:text-pool-deep transition-colors"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <!-- Right actions -->
+      <div class="hidden xl:flex items-center gap-3 shrink-0">
+        <a href="/a-propos/" class="px-2.5 py-2 text-sm font-medium text-white/90 hover:text-white header-scrolled-text whitespace-nowrap transition-colors">
+          À propos
+        </a>
+        <a href="/contact/" class="px-2.5 py-2 text-sm font-medium text-white/90 hover:text-white header-scrolled-text whitespace-nowrap transition-colors">
+          Contact
+        </a>
+        <span class="w-px h-5 bg-white/30 header-scrolled-divider"></span>
+        <a href="tel:0842520520" class="text-sm font-medium text-white/90 hover:text-white header-scrolled-text whitespace-nowrap transition-colors">
+          0842 520 520
+        </a>
+        <a
+          href="/configurateur/"
+          class="px-5 py-2.5 bg-gold text-charcoal font-heading font-semibold rounded-lg hover:bg-gold-light transition-all shadow-md hover:shadow-lg text-sm whitespace-nowrap"
+        >
+          Devis gratuit
+        </a>
+      </div>
+
+      <!-- Mobile menu (React island) -->
+      <div class="xl:hidden ml-auto">
+        <MobileMenu client:load />
+      </div>
+    </div>
+  </Container>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  if (header) {
+    const updateHeader = () => {
+      if (window.scrollY > 50) {
+        header.classList.add('bg-white', 'shadow-md', 'scrolled');
+        header.classList.remove('bg-transparent');
+      } else {
+        header.classList.remove('bg-white', 'shadow-md', 'scrolled');
+        header.classList.add('bg-transparent');
+      }
+    };
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+  }
+</script>
+
+<style>
+  /* Logo: invert on transparent header so it's visible on dark bg */
+  :global(#site-header:not(.scrolled)) .header-logo {
+    filter: brightness(0) invert(1);
+  }
+
+  /* Scrolled state: dark text */
+  :global(#site-header.scrolled) .header-scrolled-text {
+    color: var(--color-charcoal);
+  }
+  :global(#site-header.scrolled) .header-scrolled-text:hover {
+    color: var(--color-pool-deep);
+  }
+  :global(#site-header.scrolled) .header-scrolled-divider {
+    background-color: var(--color-charcoal);
+    opacity: 0.2;
+  }
+
+  :global(#site-header:not(.scrolled)) {
+    background: transparent;
+  }
+</style>

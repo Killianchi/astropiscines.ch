@@ -1,0 +1,366 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import { pageSEO } from '../../utils/seo';
+
+const seo = pageSEO.inox;
+
+const faqItems = [
+  {
+    question: 'Pourquoi choisir une piscine en acier inoxydable ?',
+    answer: 'L\'acier inoxydable (inox 316L de qualité marine) offre une durabilité quasi illimitée, une hygiène irréprochable et un design contemporain unique. Contrairement au béton ou à la coque, l\'inox ne nécessite aucun revêtement et ne se dégrade pas avec le temps. C\'est le choix des hôtels de luxe et des propriétés d\'exception.',
+  },
+  {
+    question: 'Quelle est la durée de vie d\'une piscine inox ?',
+    answer: 'Une piscine en inox 316L a une durée de vie virtuellement illimitée : plus de 50 ans sans altération structurelle. L\'acier inoxydable de qualité marine est insensible à la corrosion, aux UV, au gel et aux produits chimiques de traitement de l\'eau. C\'est un investissement pour les générations futures.',
+  },
+  {
+    question: 'L\'inox est-il compatible avec l\'eau chlorée et le sel ?',
+    answer: 'Oui, l\'inox 316L (qualité chirurgicale / marine) est parfaitement compatible avec le chlore, le brome et l\'électrolyse au sel. Sa haute teneur en molybdène lui confère une résistance exceptionnelle à la corrosion par les chlorures. C\'est d\'ailleurs le matériau utilisé dans l\'industrie alimentaire et médicale.',
+  },
+  {
+    question: 'Peut-on installer une piscine inox en intérieur ?',
+    answer: 'Absolument, la piscine inox est même le choix par excellence pour les installations intérieures. Sa légèreté relative par rapport au béton, son absence de revêtement à remplacer et son esthétique épurée en font la solution idéale pour les sous-sols, les toits-terrasses ou les espaces wellness.',
+  },
+  {
+    question: 'Quel est le coût d\'entretien d\'une piscine inox ?',
+    answer: 'Le coût d\'entretien est le plus bas de toutes les techniques. L\'inox ne nécessite aucun remplacement de liner, aucun rejointoiement de carrelage et aucune réfection d\'étanchéité. La surface non poreuse limite le développement des algues et facilite le nettoyage. Seul l\'entretien courant de l\'eau est nécessaire.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Conception sur mesure',
+    description: 'Création des plans détaillés avec modélisation 3D. Chaque panneau d\'inox est dimensionné avec précision pour votre projet unique. Choix de la finition : brossé, poli miroir ou satiné.',
+    duration: '2 - 3 semaines',
+  },
+  {
+    step: '02',
+    title: 'Fabrication en atelier',
+    description: 'Découpe, pliage et soudage des panneaux d\'inox 316L en atelier spécialisé. Soudures TIG de haute précision, contrôlées par radiographie pour garantir une étanchéité parfaite.',
+    duration: '3 - 4 semaines',
+  },
+  {
+    step: '03',
+    title: 'Préparation du site',
+    description: 'Terrassement et réalisation de la dalle de fond en béton armé. Installation des passages de paroi et préparation des raccordements techniques.',
+    duration: '1 - 2 semaines',
+  },
+  {
+    step: '04',
+    title: 'Assemblage sur site',
+    description: 'Transport et assemblage des panneaux préfabriqués. Soudures d\'assemblage réalisées sur place par nos soudeurs certifiés. Tests d\'étanchéité à chaque étape.',
+    duration: '1 - 2 semaines',
+  },
+  {
+    step: '05',
+    title: 'Équipements et finitions',
+    description: 'Installation du système de filtration, chauffage, débordement et éclairage LED intégré. Pose des margelles et des aménagements périphériques.',
+    duration: '1 semaine',
+  },
+  {
+    step: '06',
+    title: 'Mise en eau et polissage final',
+    description: 'Remplissage, polissage final des surfaces, mise en route de tous les équipements et formation complète à l\'utilisation et à l\'entretien.',
+    duration: '2 - 3 jours',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Durabilité exceptionnelle',
+    description: 'L\'inox 316L résiste à tout : corrosion, UV, gel, produits chimiques. Une durée de vie de plus de 50 ans sans altération structurelle.',
+  },
+  {
+    title: 'Hygiène irréprochable',
+    description: 'Surface non poreuse qui empêche la prolifération des bactéries et des algues. L\'inox est utilisé en milieu hospitalier pour ses propriétés sanitaires.',
+  },
+  {
+    title: 'Design contemporain',
+    description: 'L\'éclat de l\'acier inoxydable crée des reflets lumineux uniques. Finition brossée, polie ou satinée selon vos préférences esthétiques.',
+  },
+  {
+    title: 'Zéro revêtement',
+    description: 'Aucun liner, carrelage ou gel coat à remplacer. L\'inox est son propre revêtement : étanche, esthétique et permanent.',
+  },
+  {
+    title: 'Légèreté structurelle',
+    description: 'Plus légère qu\'une piscine béton, la structure inox est idéale pour les toits-terrasses, les sols faibles ou les installations intérieures.',
+  },
+  {
+    title: 'Eco-responsable',
+    description: 'L\'acier inoxydable est 100% recyclable. Aucun produit chimique d\'étanchéité, aucun revêtement à jeter. Le choix durable par excellence.',
+  },
+];
+
+const features = [
+  {
+    title: 'Débordement',
+    description: 'Effet miroir d\'eau spectaculaire avec récupération périphérique. Le débordement sublime l\'inox avec des reflets infinis.',
+  },
+  {
+    title: 'Fond mobile',
+    description: 'Plancher amovible motorisé qui transforme la piscine en terrasse. Ajustez la profondeur selon vos besoins.',
+  },
+  {
+    title: 'Éclairage intégré',
+    description: 'LED encastrées dans les parois inox pour une ambiance lumineuse sur mesure. Changement de couleur programmable.',
+  },
+  {
+    title: 'Nage à contre-courant',
+    description: 'Système de nage intégré directement dans la paroi inox. Puissance réglable pour un entraînement personnalisé.',
+  },
+];
+---
+
+<PageLayout
+  title={`${seo.title} | Astro Piscines`}
+  description={seo.description}
+  heroTitle="Piscine Inox Haut de Gamme"
+  heroSubtitle="L'acier inoxydable 316L : le summum de la durabilité et du design pour votre piscine d'exception. Un investissement pour les générations futures."
+>
+  <ServiceSchema
+    slot="schema"
+    name="Construction de Piscine en Acier Inoxydable"
+    description={seo.description}
+    url="/construction/piscine-inox/"
+  />
+  <BreadcrumbSchema slot="schema" />
+  <FAQSchema slot="schema" items={faqItems} />
+
+  <!-- Introduction -->
+  <section class="py-16 bg-white">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeading
+            title="L'excellence de l'acier inoxydable"
+            align="left"
+          />
+          <div class="space-y-4 text-gray-700 text-lg leading-relaxed">
+            <p>
+              La piscine en acier inoxydable 316L est le choix ultime pour les projets d'exception. Utilisé dans l'industrie navale, aéronautique et médicale pour ses propriétés uniques, l'inox de qualité marine offre une résistance inégalée à la corrosion et une longévité qui dépasse celle de toutes les autres techniques de construction.
+            </p>
+            <p>
+              Astro Piscines est l'un des rares constructeurs en Suisse romande à maîtriser cette technique haut de gamme. Nos soudeurs certifiés et nos ingénieurs conçoivent des bassins sur mesure qui allient performance technique et esthétique contemporaine.
+            </p>
+            <p>
+              Choisie par les hôtels de luxe, les centres de wellness et les propriétés les plus prestigieuses, la piscine inox est un investissement pérenne qui conserve sa valeur et sa beauté au fil des décennies.
+            </p>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 flex items-center justify-center min-h-[400px] relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+          <div class="text-center relative z-10">
+            <div class="text-6xl mb-4">✨</div>
+            <p class="font-heading font-bold text-pool-deep text-xl">Acier inoxydable 316L</p>
+            <p class="text-gray-600 mt-2">Qualité marine / chirurgicale</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Premium Positioning -->
+  <section class="py-12 bg-charcoal text-white">
+    <Container>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-center">
+        <div>
+          <p class="text-5xl font-heading font-bold text-gold">50+</p>
+          <p class="text-gray-300 font-heading">ans de durée de vie</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gray-600"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-gold">316L</p>
+          <p class="text-gray-300 font-heading">qualité marine</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gray-600"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-gold">100%</p>
+          <p class="text-gray-300 font-heading">recyclable</p>
+        </div>
+        <div class="hidden md:block w-px h-16 bg-gray-600"></div>
+        <div>
+          <p class="text-5xl font-heading font-bold text-gold">0</p>
+          <p class="text-gray-300 font-heading">revêtement à changer</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Pourquoi choisir l'inox"
+        subtitle="Des avantages uniques que seul l'acier inoxydable peut offrir"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <Card class="p-6">
+            <h3 class="text-xl font-heading font-bold text-pool-deep mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{benefit.description}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Features / Options -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Options et équipements premium"
+        subtitle="Personnalisez votre piscine inox avec des équipements d'exception"
+      />
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {features.map((feature) => (
+          <div class="bg-white rounded-2xl p-8 shadow-md border-l-4 border-gold">
+            <h3 class="text-xl font-heading font-bold text-charcoal mb-3">{feature.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Le processus de fabrication"
+        subtitle="Un savoir-faire d'exception à chaque étape"
+      />
+      <div class="max-w-4xl mx-auto space-y-8">
+        {processSteps.map((item) => (
+          <div class="flex gap-6 items-start">
+            <div class="w-14 h-14 bg-charcoal text-gold rounded-full flex items-center justify-center text-lg font-heading font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-grow">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                <h3 class="text-xl font-heading font-bold text-charcoal">{item.title}</h3>
+                <span class="text-sm text-gold font-semibold bg-gold/10 px-3 py-1 rounded-full">{item.duration}</span>
+              </div>
+              <p class="text-gray-600 leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Indication -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Investissement"
+        subtitle="Un prix premium pour une qualité qui transcende le temps"
+      />
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <Card class="p-8">
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Piscine inox classique</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Bassin 8 x 4 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 80'000</p>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Structure inox 316L soudée TIG</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Finition brossée</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Filtration haute performance</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Escalier intégré en inox</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Éclairage LED intégré</li>
+          </ul>
+        </Card>
+        <Card class="p-8 border-2 border-gold relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-charcoal text-xs font-heading font-bold px-4 py-1 rounded-full">PRESTIGE</div>
+          <p class="text-sm font-heading font-semibold text-gold uppercase tracking-wider mb-2">Piscine inox à débordement</p>
+          <h3 class="text-2xl font-heading font-bold text-pool-deep mb-2">Bassin 10 x 5 m</h3>
+          <p class="text-4xl font-heading font-bold text-charcoal mb-4">dès CHF 120'000</p>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Structure inox 316L premium</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Débordement périphérique ou miroir</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Finition polie miroir</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Automatisation complète</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Nage à contre-courant</li>
+            <li class="flex items-start"><span class="w-2 h-2 bg-gold rounded-full mr-3 mt-1.5 flex-shrink-0"></span>Chauffage pompe à chaleur inverter</li>
+          </ul>
+        </Card>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-8">
+        * Prix indicatifs hors terrassement et aménagements extérieurs. Chaque projet fait l'objet d'une étude personnalisée et d'un devis détaillé gratuit.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-16 bg-white">
+    <Container>
+      <SectionHeading
+        title="Applications idéales"
+        subtitle="La piscine inox excelle dans tous les environnements"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: 'Extérieur', desc: 'Jardins et terrasses avec vue, parfaite résistance aux intempéries suisses.' },
+          { title: 'Intérieur', desc: 'Sous-sols, espaces wellness et annexes. Légèreté et absence de condensation.' },
+          { title: 'Toit-terrasse', desc: 'Structure légère idéale pour les installations en hauteur et les espaces urbains.' },
+          { title: 'Hôtellerie', desc: 'Le standard des établissements de luxe pour une hygiène et une durabilité maximales.' },
+        ].map((item) => (
+          <Card class="p-6 text-center">
+            <h3 class="text-lg font-heading font-bold text-pool-deep mb-2">{item.title}</h3>
+            <p class="text-sm text-gray-600">{item.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <SectionHeading
+        title="Questions fréquentes"
+        subtitle="Tout savoir sur la piscine en acier inoxydable"
+      />
+      <div class="max-w-3xl mx-auto space-y-6">
+        {faqItems.map((faq) => (
+          <details class="group bg-white rounded-xl p-6 cursor-pointer shadow-sm">
+            <summary class="flex justify-between items-center font-heading font-semibold text-pool-deep text-lg list-none">
+              {faq.question}
+              <span class="ml-4 text-gold group-open:rotate-45 transition-transform text-2xl">+</span>
+            </summary>
+            <p class="mt-4 text-gray-700 leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-charcoal to-gray-900">
+    <Container>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Découvrez l'excellence de la piscine inox
+        </h2>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          Prenez rendez-vous avec nos experts pour discuter de votre projet d'exception. Visite de notre showroom et consultation personnalisée sur demande.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/configurateur/" size="lg">
+            Configurer ma piscine inox
+          </Button>
+          <Button href="/contact/" variant="ghost" size="lg" class="!border-gold !text-gold hover:!bg-gold hover:!text-charcoal">
+            Prendre rendez-vous
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

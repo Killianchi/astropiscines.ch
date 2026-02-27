@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import TrustIndicators from '../../components/sections/TrustIndicators.astro';
+import ServicesGrid from '../../components/sections/ServicesGrid.astro';
+import ConfiguratorCTA from '../../components/sections/ConfiguratorCTA.astro';
+import Testimonials from '../../components/sections/Testimonials.astro';
+import Locations from '../../components/sections/Locations.astro';
+import BlogPreview from '../../components/sections/BlogPreview.astro';
+import LocalBusiness from '../../components/seo/LocalBusiness.astro';
+---
+<BaseLayout
+  title="Pool Builder in Geneva and Vaud | Astro Piscines"
+  description="Astro Piscines, pool builder since 1974. Construction, renovation and maintenance of pools in Geneva and the canton of Vaud. Free quote."
+  lang="en"
+  alternateEn="/en/"
+  alternateFr="/"
+>
+  <LocalBusiness slot="schema" />
+
+  <Hero />
+  <TrustIndicators />
+  <ServicesGrid />
+  <ConfiguratorCTA />
+  <Testimonials />
+  <Locations />
+  <BlogPreview />
+</BaseLayout>
